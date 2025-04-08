@@ -184,7 +184,7 @@
             transform: translateY(-2px);
         }
         
-        /* Мобільне меню */
+        /* Мобільне меню - повністю перероблене */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -192,20 +192,20 @@
             color: #fff;
             font-size: 24px;
             cursor: pointer;
-            z-index: 100;
-            padding: 5px 10px;
+            padding: 5px;
         }
         
+        /* Мобільна навігація */
         .mobile-nav {
-            display: none;
             position: fixed;
             top: 0;
             right: -100%;
-            width: 70%;
-            height: 100vh;
+            width: 80%;
+            height: 100%;
             background-color: rgba(0, 0, 0, 0.95);
             z-index: 999;
             transition: right 0.3s ease;
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -222,8 +222,9 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 30px;
             text-align: center;
+            width: 100%;
         }
         
         .mobile-nav-link {
@@ -250,7 +251,8 @@
             transition: width 0.3s ease;
         }
         
-        .mobile-nav-link:hover::after {
+        .mobile-nav-link:hover::after,
+        .mobile-nav-link:active::after {
             width: 70%;
         }
         
@@ -261,8 +263,10 @@
             background: none;
             border: none;
             color: #fff;
-            font-size: 24px;
+            font-size: 30px;
             cursor: pointer;
+            padding: 10px;
+            z-index: 1000;
         }
         
         .main-content {
@@ -563,6 +567,22 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Затемнення фону при відкритому мобільному меню */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
         
         /* Адаптивність */
         @media (max-width: 992px) {
@@ -679,6 +699,9 @@
             <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </header>
         
+        <!-- Затемнення фону при відкритому меню -->
+        <div class="overlay" id="overlay"></div>
+        
         <!-- Мобільне меню -->
         <div class="mobile-nav" id="mobileNav">
             <button class="close-menu" id="closeMenu">✕</button>
@@ -739,31 +762,48 @@
     </div>
     
     <script>
+        // Виконуємо код після повного завантаження DOM
         document.addEventListener('DOMContentLoaded', function() {
-            // Мобільне меню
+            // Отримуємо посилання на елементи
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileNav = document.getElementById('mobileNav');
             const closeMenu = document.getElementById('closeMenu');
+            const overlay = document.getElementById('overlay');
             
-            if (mobileMenuBtn && mobileNav && closeMenu) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    mobileNav.classList.add('active');
-                });
-                
-                closeMenu.addEventListener('click', function() {
-                    mobileNav.classList.remove('active');
-                });
-                
-                // Закриття меню при кліку на пункт
-                const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-                mobileNavLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        mobileNav.classList.remove('active');
-                    });
-                });
+            // Функція для відкриття мобільного меню
+            function openMobileMenu() {
+                mobileNav.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Блокуємо прокрутку сторінки
             }
             
-            // 3D-ефект при наведенні миші на blob
+            // Функція для закриття мобільного меню
+            function closeMobileMenu() {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = ''; // Відновлюємо прокрутку
+            }
+            
+            // Додаємо обробники подій
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', openMobileMenu);
+            }
+            
+            if (closeMenu) {
+                closeMenu.addEventListener('click', closeMobileMenu);
+            }
+            
+            if (overlay) {
+                overlay.addEventListener('click', closeMobileMenu);
+            }
+            
+            // Закриття меню при кліку на пункт меню
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+            
+            // 3D-ефект для blob на десктопі
             const blobContainer = document.getElementById('blobContainer');
             
             if (blobContainer && window.matchMedia("(min-width: 769px)").matches) {
@@ -786,7 +826,7 @@
                 });
             }
             
-            // Анімація при прокрутці
+            // Анімація елементів при прокрутці
             const scrollSections = document.querySelectorAll('.scroll-section');
             
             function checkScroll() {
@@ -801,9 +841,9 @@
             }
             
             window.addEventListener('scroll', checkScroll);
-            checkScroll(); // Перевірка при завантаженні
+            checkScroll(); // Перевіряємо при завантаженні
             
-            // Додаємо подію для перевірки при зміні розміру вікна
+            // Перевіряємо при зміні розміру вікна
             window.addEventListener('resize', checkScroll);
         });
     </script>
