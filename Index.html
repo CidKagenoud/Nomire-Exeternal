@@ -67,6 +67,8 @@
         .logo-wrap {
             display: flex;
             align-items: center;
+            user-select: text; /* Дозволяє виділення тексту */
+            cursor: default; /* Стандартний курсор, а не pointer */
         }
         
         /* Прибираємо всі ефекти з логотипу */
@@ -84,21 +86,25 @@
             font-family: 'Chakra Petch', sans-serif;
             font-size: 16px;
             letter-spacing: -1px;
+            user-select: text; /* Дозволяє виділення */
         }
         
         /* Змінюємо шрифт назви сайту на крутіший і робимо текст білим */
         .site-name {
-            font-size: 28px;
+            font-size: 24px; /* Зменшено з 28px до 24px */
             font-family: 'Audiowide', cursive;
             font-weight: 700;
             letter-spacing: 2px;
             color: #fff;
             text-transform: uppercase;
+            user-select: text; /* Дозволяє виділення тексту */
+            cursor: default; /* Стандартний курсор, а не pointer */
         }
         
-        .site-name:hover {
+        /* Видаляємо hover ефект з site-name */
+        /* .site-name:hover {
             cursor: pointer;
-        }
+        } */
         
         /* Навігаційне меню */
         nav {
@@ -573,7 +579,7 @@
             }
             
             .site-name {
-                font-size: 24px;
+                font-size: 20px; /* Зменшено з 24px до 20px для мобільних */
             }
             
             .nav-links {
@@ -611,7 +617,7 @@
             }
             
             .site-name {
-                font-size: 20px;
+                font-size: 18px; /* Зменшено з 20px до 18px для найменших екранів */
             }
             
             .telegram-button {
