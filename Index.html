@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nomire External</title>
+    <!-- Додаємо favicon для відображення логотипу у вкладці браузера -->
+    <link rel="icon" href="logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Rajdhani:wght@500;700&family=Audiowide&family=Chakra+Petch:wght@700&display=swap" rel="stylesheet">
@@ -67,6 +69,7 @@
             align-items: center;
         }
         
+        /* Прибираємо всі ефекти з логотипу */
         .logo {
             background-color: #0055FF;
             color: white;
@@ -79,64 +82,21 @@
             font-weight: bold;
             margin-right: 15px;
             font-family: 'Chakra Petch', sans-serif;
-            position: relative;
-            overflow: hidden;
-            animation: glowing 3s infinite alternate;
             font-size: 16px;
             letter-spacing: -1px;
-            transition: transform 0.3s, box-shadow 0.3s;
         }
         
-        .logo:hover {
-            transform: scale(0.5) rotate(5deg);
-            cursor: pointer;
-        }
-        
-        @keyframes glowing {
-            0% {
-                box-shadow: 0 0 5px #0055FF, 0 0 10px #0055FF;
-                background-color: #0055FF;
-            }
-            100% {
-                box-shadow: 0 0 15px #00C6FF, 0 0 20px #00C6FF;
-                background-color: #0077FF;
-            }
-        }
-        
-        .logo::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
-            transform: rotate(45deg);
-            animation: shine 4s infinite;
-        }
-        
-        @keyframes shine {
-            0% {
-                top: -150%;
-                left: -150%;
-            }
-            100% {
-                top: 150%;
-                left: 150%;
-            }
-        }
-        
+        /* Змінюємо шрифт назви сайту на крутіший і робимо текст білим */
         .site-name {
             font-size: 28px;
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Audiowide', cursive;
             font-weight: 700;
             letter-spacing: 2px;
-            position: relative;
-            transition: text-shadow 0.3s;
+            color: #fff;
+            text-transform: uppercase;
         }
         
         .site-name:hover {
-            text-shadow: 0 0 15px rgba(0, 85, 255, 0.8);
             cursor: pointer;
         }
         
@@ -348,16 +308,7 @@
             }
         }
         
-        /* Додаємо градієнт для назви */
-        .site-name {
-            background: linear-gradient(to right, #0055FF, #00C6FF);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-        }
-        
-        /* 3D анімована пляма */
+        /* Blob анімація */
         .blob-container {
             position: relative;
             width: 100%;
@@ -516,7 +467,7 @@
             }
         }
         
-        /* Кнопка Telegram - оновлена версія відповідно до зображення */
+        /* Кнопка Telegram */
         .telegram-button {
             display: inline-flex;
             align-items: center;
@@ -802,29 +753,6 @@
             mobileNavLinks.forEach(link => {
                 link.addEventListener('click', closeMobileMenu);
             });
-            
-            // 3D-ефект для blob на десктопі
-            const blobContainer = document.getElementById('blobContainer');
-            
-            if (blobContainer && window.matchMedia("(min-width: 769px)").matches) {
-                blobContainer.addEventListener('mousemove', function(e) {
-                    const rect = blobContainer.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    const angleX = (y - centerY) / 30;
-                    const angleY = (centerX - x) / 30;
-                    
-                    blobContainer.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-                });
-                
-                blobContainer.addEventListener('mouseleave', function() {
-                    blobContainer.style.transform = 'rotateX(0) rotateY(0)';
-                });
-            }
             
             // Анімація елементів при прокрутці
             const scrollSections = document.querySelectorAll('.scroll-section');
