@@ -48,6 +48,7 @@
             animation: slideDown 1s ease-out 0.5s forwards;
             position: relative;
             flex-wrap: wrap;
+            justify-content: space-between;
         }
         
         @keyframes slideDown {
@@ -59,6 +60,11 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+        
+        .logo-wrap {
+            display: flex;
+            align-items: center;
         }
         
         .logo {
@@ -136,7 +142,6 @@
         
         /* Навігаційне меню */
         nav {
-            margin-left: auto;
             perspective: 1000px;
         }
         
@@ -179,7 +184,7 @@
             transform: translateY(-2px);
         }
         
-        /* Мобільне меню - приховано за замовчуванням */
+        /* Мобільне меню */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -187,20 +192,19 @@
             color: #fff;
             font-size: 24px;
             cursor: pointer;
-            margin-left: auto;
             z-index: 100;
+            padding: 5px 10px;
         }
         
-        /* Приховуємо мобільне меню на десктопі */
         .mobile-nav {
             display: none;
             position: fixed;
             top: 0;
             right: -100%;
             width: 70%;
-            height: 100%;
+            height: 100vh;
             background-color: rgba(0, 0, 0, 0.95);
-            z-index: 99;
+            z-index: 999;
             transition: right 0.3s ease;
             flex-direction: column;
             align-items: center;
@@ -297,8 +301,8 @@
             margin-bottom: 20px;
             background: linear-gradient(to right, #0055FF, #00C6FF);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: transparent;
             font-weight: 900;
             letter-spacing: -0.5px;
             text-shadow: 0 0 15px rgba(0, 85, 255, 0.5);
@@ -344,8 +348,8 @@
         .site-name {
             background: linear-gradient(to right, #0055FF, #00C6FF);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: transparent;
             display: inline-block;
         }
         
@@ -508,58 +512,41 @@
             }
         }
         
-        /* Кнопка Telegram */
+        /* Кнопка Telegram - оновлена версія відповідно до зображення */
         .telegram-button {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             margin-top: 30px;
-            background: linear-gradient(45deg, #0088cc, #0099ff);
+            background: #2673F8;
             color: white;
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 18px;
+            font-size: 16px;
             text-decoration: none;
-            padding: 12px 30px;
-            border-radius: 5px;
+            padding: 10px 25px;
+            border-radius: 8px;
             position: relative;
-            overflow: hidden;
             transition: all 0.3s;
-            box-shadow: 0 0 15px rgba(0, 136, 204, 0.5);
+            box-shadow: 0 0 15px rgba(38, 115, 248, 0.4);
             border: none;
             cursor: pointer;
             z-index: 1;
         }
         
         .telegram-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 7px 20px rgba(0, 136, 204, 0.7);
+            background: #1c64e9;
+            transform: translateY(-2px);
         }
         
         .telegram-button:active {
-            transform: translateY(-2px);
-            box-shadow: 0 3px 10px rgba(0, 136, 204, 0.7);
-        }
-        
-        .telegram-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: all 0.5s;
-            z-index: -1;
-        }
-        
-        .telegram-button:hover::before {
-            left: 100%;
-            transition: all 0.5s;
+            transform: translateY(0);
         }
         
         .telegram-icon {
             font-size: 20px;
+            margin-right: 5px;
         }
         
         /* Скролл-секція */
@@ -622,13 +609,9 @@
                 display: none;
             }
             
-            /* Показуємо кнопку мобільного меню і сам контейнер на мобільних */
+            /* Показуємо кнопку мобільного меню на мобільних */
             .mobile-menu-btn {
                 display: block;
-            }
-            
-            .mobile-nav {
-                display: flex; /* Тепер воно вже показується, але ще за межами екрану */
             }
             
             .blob {
@@ -679,8 +662,10 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo">NE</div>
-            <div class="site-name">NOMIRE EXTERNAL</div>
+            <div class="logo-wrap">
+                <div class="logo">NE</div>
+                <div class="site-name">NOMIRE EXTERNAL</div>
+            </div>
             
             <nav>
                 <ul class="nav-links">
@@ -711,7 +696,10 @@
                 <p>Раді тебе бачити на нашому сайті. Тут буде розміщена інформація про ваш проект.</p>
                 
                 <a href="https://t.me/username" class="telegram-button">
-                    <span class="telegram-icon">&#9993;</span>
+                    <svg class="telegram-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 2L11 13"></path>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                    </svg>
                     Telegram
                 </a>
             </div>
@@ -751,104 +739,73 @@
     </div>
     
     <script>
-        // Перевірка, чи це мобільний пристрій або компʼютер
-        function checkDeviceType() {
-            const isMobile = window.matchMedia("(max-width: 768px)").matches;
-            const mobileNav = document.getElementById('mobileNav');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Мобільне меню
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const closeMenu = document.getElementById('closeMenu');
             
-            // Показуємо або приховуємо всі елементи мобільного меню
-            if (isMobile) {
-                mobileMenuBtn.style.display = 'block';
-                if (mobileNav) {
-                    mobileNav.style.display = 'flex';
-                    mobileNav.style.right = '-100%'; // За межами екрану, але готове до анімації
-                }
-            } else {
-                mobileMenuBtn.style.display = 'none';
-                if (mobileNav) {
-                    mobileNav.style.display = 'none'; // Повністю приховуємо на десктопі
-                }
-            }
-        }
-        
-        // Викликаємо функцію перевірки при завантаженні
-        window.addEventListener('load', checkDeviceType);
-        
-        // Перевіряємо при зміні розміру екрану
-        window.addEventListener('resize', checkDeviceType);
-        
-        // 3D-ефект при наведенні миші на blob (тільки на десктопі)
-        const blobContainer = document.getElementById('blobContainer');
-        const blob = document.getElementById('blob');
-        
-        // Перевіряємо, чи це не мобільний пристрій
-        const isMobile = window.matchMedia("(max-width: 768px)").matches;
-        
-        if (!isMobile) {
-            blobContainer.addEventListener('mousemove', (e) => {
-                const rect = blobContainer.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const angleX = (y - centerY) / 30;
-                const angleY = (centerX - x) / 30;
-                
-                blobContainer.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-            });
-            
-            blobContainer.addEventListener('mouseleave', () => {
-                blobContainer.style.transform = 'rotateX(0) rotateY(0)';
-            });
-        }
-        
-        // Мобільне меню - працює тільки якщо меню відображається
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileNav = document.getElementById('mobileNav');
-        const closeMenu = document.getElementById('closeMenu');
-        
-        if (mobileMenuBtn && mobileNav && closeMenu) {
-            mobileMenuBtn.addEventListener('click', () => {
-                if (window.getComputedStyle(mobileNav).display !== 'none') {
+            if (mobileMenuBtn && mobileNav && closeMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
                     mobileNav.classList.add('active');
-                }
-            });
-            
-            closeMenu.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
-            });
-            
-            // Закриття меню при кліку на пункт
-            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-            mobileNavLinks.forEach(link => {
-                link.addEventListener('click', () => {
+                });
+                
+                closeMenu.addEventListener('click', function() {
                     mobileNav.classList.remove('active');
                 });
-            });
-        }
-        
-        // Анімація при прокрутці
-        const scrollSections = document.querySelectorAll('.scroll-section');
-        
-        const checkScroll = () => {
-            scrollSections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
                 
-                if (sectionTop < windowHeight * 0.8) {
-                    section.classList.add('active');
-                }
-            });
-        };
-        
-        window.addEventListener('scroll', checkScroll);
-        checkScroll(); // Перевірка при завантаженні
-        
-        // Додаємо подію для перевірки при зміні розміру вікна
-        window.addEventListener('resize', checkScroll);
+                // Закриття меню при кліку на пункт
+                const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileNav.classList.remove('active');
+                    });
+                });
+            }
+            
+            // 3D-ефект при наведенні миші на blob
+            const blobContainer = document.getElementById('blobContainer');
+            
+            if (blobContainer && window.matchMedia("(min-width: 769px)").matches) {
+                blobContainer.addEventListener('mousemove', function(e) {
+                    const rect = blobContainer.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const angleX = (y - centerY) / 30;
+                    const angleY = (centerX - x) / 30;
+                    
+                    blobContainer.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+                });
+                
+                blobContainer.addEventListener('mouseleave', function() {
+                    blobContainer.style.transform = 'rotateX(0) rotateY(0)';
+                });
+            }
+            
+            // Анімація при прокрутці
+            const scrollSections = document.querySelectorAll('.scroll-section');
+            
+            function checkScroll() {
+                scrollSections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (sectionTop < windowHeight * 0.8) {
+                        section.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkScroll);
+            checkScroll(); // Перевірка при завантаженні
+            
+            // Додаємо подію для перевірки при зміні розміру вікна
+            window.addEventListener('resize', checkScroll);
+        });
     </script>
 </body>
 </html>
