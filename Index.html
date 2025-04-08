@@ -16,6 +16,8 @@
             padding: 0;
             opacity: 0;
             animation: fadeIn 1.5s ease-in-out forwards;
+            overflow-x: hidden;
+            position: relative;
         }
         
         @keyframes fadeIn {
@@ -32,6 +34,9 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
+            box-sizing: border-box;
         }
         
         header {
@@ -41,6 +46,8 @@
             opacity: 0;
             transform: translateY(-20px);
             animation: slideDown 1s ease-out 0.5s forwards;
+            position: relative;
+            flex-wrap: wrap;
         }
         
         @keyframes slideDown {
@@ -71,6 +78,12 @@
             animation: glowing 3s infinite alternate;
             font-size: 16px;
             letter-spacing: -1px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.1) rotate(5deg);
+            cursor: pointer;
         }
         
         @keyframes glowing {
@@ -109,10 +122,143 @@
         
         .site-name {
             font-size: 28px;
-            color: #fff;
             font-family: 'Rajdhani', sans-serif;
             font-weight: 700;
             letter-spacing: 2px;
+            position: relative;
+            transition: text-shadow 0.3s;
+        }
+        
+        .site-name:hover {
+            text-shadow: 0 0 15px rgba(0, 85, 255, 0.8);
+            cursor: pointer;
+        }
+        
+        /* Навігаційне меню */
+        nav {
+            margin-left: auto;
+            perspective: 1000px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .nav-link {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 500;
+            font-size: 18px;
+            color: #fff;
+            text-decoration: none;
+            position: relative;
+            padding: 5px 10px;
+            transition: all 0.3s;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #0055FF, #00C6FF);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::before {
+            width: 100%;
+        }
+        
+        .nav-link:hover {
+            text-shadow: 0 0 8px rgba(0, 198, 255, 0.8);
+            transform: translateY(-2px);
+        }
+        
+        /* Мобільне меню - приховано за замовчуванням */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            margin-left: auto;
+            z-index: 100;
+        }
+        
+        /* Приховуємо мобільне меню на десктопі */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 99;
+            transition: right 0.3s ease;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+        }
+        
+        .mobile-nav-link {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 500;
+            font-size: 24px;
+            color: #fff;
+            text-decoration: none;
+            position: relative;
+            padding: 10px;
+            transition: all 0.3s;
+            display: block;
+        }
+        
+        .mobile-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #0055FF, #00C6FF);
+            transition: width 0.3s ease;
+        }
+        
+        .mobile-nav-link:hover::after {
+            width: 70%;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
         }
         
         .main-content {
@@ -120,6 +266,8 @@
             align-items: center;
             margin-top: 50px;
             min-height: 60vh;
+            position: relative;
+            flex-wrap: wrap;
         }
         
         .welcome-text {
@@ -128,6 +276,9 @@
             opacity: 0;
             transform: translateX(-30px);
             animation: slideRight 1s ease-out 1s forwards;
+            position: relative;
+            z-index: 2;
+            min-width: 250px;
         }
         
         @keyframes slideRight {
@@ -144,16 +295,22 @@
         .welcome-text h1 {
             font-size: 48px;
             margin-bottom: 20px;
-            color: #0055FF;
+            background: linear-gradient(to right, #0055FF, #00C6FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 900;
             letter-spacing: -0.5px;
             text-shadow: 0 0 15px rgba(0, 85, 255, 0.5);
+            position: relative;
+            font-family: 'Audiowide', cursive;
         }
         
         .welcome-text p {
             font-size: 24px;
             line-height: 1.5;
             font-weight: 400;
+            position: relative;
         }
         
         .image-container {
@@ -167,6 +324,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            min-width: 250px;
         }
         
         @keyframes slideLeft {
@@ -189,7 +349,7 @@
             display: inline-block;
         }
         
-        /* Анімована пляма */
+        /* 3D анімована пляма */
         .blob-container {
             position: relative;
             width: 100%;
@@ -197,6 +357,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .blob-container:hover {
+            transform: rotate3d(0.5, 1, 0, 15deg);
         }
         
         .blob {
@@ -209,14 +377,30 @@
                        morphing 8s ease-in-out infinite;
             box-shadow: 0 0 30px rgba(0, 85, 255, 0.6);
             z-index: 1;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        
+        /* 3D шари для глибини */
+        .blob-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            background: inherit;
+            opacity: 0.7;
+            transform: translateZ(var(--depth));
+            filter: brightness(calc(1 - (var(--depth-index) * 0.2)));
         }
         
         @keyframes swaying {
             0% {
-                transform: translateX(-10px) scale(1);
+                transform: translateX(-10px) scale(1) rotateY(5deg);
             }
             100% {
-                transform: translateX(10px) scale(1.05);
+                transform: translateX(10px) scale(1.05) rotateY(-5deg);
             }
         }
         
@@ -242,6 +426,7 @@
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             animation: inner-morphing 8s ease-in-out infinite alternate;
             z-index: 2;
+            backdrop-filter: blur(5px);
         }
         
         @keyframes inner-morphing {
@@ -271,12 +456,222 @@
             z-index: 0;
         }
         
+        /* Додаткові орбітальні кільця */
+        .orbital-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 198, 255, 0.2);
+            animation: rotate var(--duration) linear infinite;
+        }
+        
+        .orbital-ring-1 {
+            width: 140%;
+            height: 140%;
+            top: -20%;
+            left: -20%;
+            --duration: 25s;
+        }
+        
+        .orbital-ring-2 {
+            width: 160%;
+            height: 120%;
+            top: -10%;
+            left: -30%;
+            --duration: 35s;
+            transform: rotate(60deg);
+        }
+        
+        .orbital-ring-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #00C6FF;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #00C6FF;
+            top: 50%;
+            left: 0;
+            transform: translate(-50%, -50%);
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.7; }
+            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        }
+        
         @keyframes rotate {
             0% {
                 transform: rotate(0deg);
             }
             100% {
                 transform: rotate(360deg);
+            }
+        }
+        
+        /* Кнопка Telegram */
+        .telegram-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            background: linear-gradient(45deg, #0088cc, #0099ff);
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(0, 136, 204, 0.5);
+            border: none;
+            cursor: pointer;
+            z-index: 1;
+        }
+        
+        .telegram-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 20px rgba(0, 136, 204, 0.7);
+        }
+        
+        .telegram-button:active {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(0, 136, 204, 0.7);
+        }
+        
+        .telegram-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s;
+            z-index: -1;
+        }
+        
+        .telegram-button:hover::before {
+            left: 100%;
+            transition: all 0.5s;
+        }
+        
+        .telegram-icon {
+            font-size: 20px;
+        }
+        
+        /* Скролл-секція */
+        .scroll-section {
+            margin-top: 100px;
+            padding: 20px 0;
+            position: relative;
+            opacity: 0.1;
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .scroll-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Адаптивність */
+        @media (max-width: 992px) {
+            .welcome-text h1 {
+                font-size: 40px;
+            }
+            
+            .welcome-text p {
+                font-size: 20px;
+            }
+            
+            .blob {
+                width: 220px;
+                height: 320px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                margin-top: 30px;
+            }
+            
+            .welcome-text, .image-container {
+                width: 100%;
+                padding: 0;
+                margin-bottom: 40px;
+            }
+            
+            .welcome-text {
+                margin-bottom: 40px;
+                padding-right: 0;
+            }
+            
+            .image-container {
+                height: 350px;
+            }
+            
+            .site-name {
+                font-size: 24px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            /* Показуємо кнопку мобільного меню і сам контейнер на мобільних */
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-nav {
+                display: flex; /* Тепер воно вже показується, але ще за межами екрану */
+            }
+            
+            .blob {
+                width: 200px;
+                height: 280px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .welcome-text h1 {
+                font-size: 32px;
+            }
+            
+            .welcome-text p {
+                font-size: 18px;
+            }
+            
+            .logo {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+            
+            .site-name {
+                font-size: 20px;
+            }
+            
+            .telegram-button {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+            
+            .image-container {
+                height: 300px;
+            }
+            
+            .blob {
+                width: 180px;
+                height: 250px;
             }
         }
     </style>
@@ -286,22 +681,174 @@
         <header>
             <div class="logo">NE</div>
             <div class="site-name">NOMIRE EXTERNAL</div>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link">Головна</a></li>
+                    <li><a href="#" class="nav-link">Мід</a></li>
+                    <li><a href="#" class="nav-link">Ігри</a></li>
+                    <li><a href="#" class="nav-link">Налаштування</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </header>
+        
+        <!-- Мобільне меню -->
+        <div class="mobile-nav" id="mobileNav">
+            <button class="close-menu" id="closeMenu">✕</button>
+            <ul class="mobile-nav-links">
+                <li><a href="#" class="mobile-nav-link">Головна</a></li>
+                <li><a href="#" class="mobile-nav-link">Мід</a></li>
+                <li><a href="#" class="mobile-nav-link">Ігри</a></li>
+                <li><a href="#" class="mobile-nav-link">Налаштування</a></li>
+            </ul>
+        </div>
         
         <div class="main-content">
             <div class="welcome-text">
                 <h1>Привіт, Друже!</h1>
                 <p>Раді тебе бачити на нашому сайті. Тут буде розміщена інформація про ваш проект.</p>
+                
+                <a href="https://t.me/username" class="telegram-button">
+                    <span class="telegram-icon">&#9993;</span>
+                    Telegram
+                </a>
             </div>
             
             <div class="image-container">
-                <div class="blob-container">
+                <div class="blob-container" id="blobContainer">
                     <div class="blob-lines"></div>
-                    <div class="blob"></div>
+                    <div class="blob" id="blob">
+                        <!-- 3D шари для глибини -->
+                        <div class="blob-layer" style="--depth: -10px; --depth-index: 0.2;"></div>
+                        <div class="blob-layer" style="--depth: -5px; --depth-index: 0.1;"></div>
+                        <div class="blob-layer" style="--depth: 5px; --depth-index: -0.1;"></div>
+                        <div class="blob-layer" style="--depth: 10px; --depth-index: -0.2;"></div>
+                    </div>
                     <div class="inner-blob"></div>
+                    
+                    <!-- Орбітальні кільця -->
+                    <div class="orbital-ring orbital-ring-1">
+                        <div class="orbital-ring-dot"></div>
+                    </div>
+                    <div class="orbital-ring orbital-ring-2">
+                        <div class="orbital-ring-dot"></div>
+                    </div>
                 </div>
             </div>
         </div>
+        
+        <div class="scroll-section" id="section1">
+            <h2>Про наш проект</h2>
+            <p>Тут буде детальна інформація про ваш проект з використанням анімацій при прокрутці.</p>
+        </div>
+        
+        <div class="scroll-section" id="section2">
+            <h2>Наші можливості</h2>
+            <p>Інформація про функціонал та можливості вашого проекту.</p>
+        </div>
     </div>
+    
+    <script>
+        // Перевірка, чи це мобільний пристрій або компʼютер
+        function checkDeviceType() {
+            const isMobile = window.matchMedia("(max-width: 768px)").matches;
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            
+            // Показуємо або приховуємо всі елементи мобільного меню
+            if (isMobile) {
+                mobileMenuBtn.style.display = 'block';
+                if (mobileNav) {
+                    mobileNav.style.display = 'flex';
+                    mobileNav.style.right = '-100%'; // За межами екрану, але готове до анімації
+                }
+            } else {
+                mobileMenuBtn.style.display = 'none';
+                if (mobileNav) {
+                    mobileNav.style.display = 'none'; // Повністю приховуємо на десктопі
+                }
+            }
+        }
+        
+        // Викликаємо функцію перевірки при завантаженні
+        window.addEventListener('load', checkDeviceType);
+        
+        // Перевіряємо при зміні розміру екрану
+        window.addEventListener('resize', checkDeviceType);
+        
+        // 3D-ефект при наведенні миші на blob (тільки на десктопі)
+        const blobContainer = document.getElementById('blobContainer');
+        const blob = document.getElementById('blob');
+        
+        // Перевіряємо, чи це не мобільний пристрій
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        
+        if (!isMobile) {
+            blobContainer.addEventListener('mousemove', (e) => {
+                const rect = blobContainer.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const angleX = (y - centerY) / 30;
+                const angleY = (centerX - x) / 30;
+                
+                blobContainer.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+            });
+            
+            blobContainer.addEventListener('mouseleave', () => {
+                blobContainer.style.transform = 'rotateX(0) rotateY(0)';
+            });
+        }
+        
+        // Мобільне меню - працює тільки якщо меню відображається
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeMenu = document.getElementById('closeMenu');
+        
+        if (mobileMenuBtn && mobileNav && closeMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                if (window.getComputedStyle(mobileNav).display !== 'none') {
+                    mobileNav.classList.add('active');
+                }
+            });
+            
+            closeMenu.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+            });
+            
+            // Закриття меню при кліку на пункт
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.remove('active');
+                });
+            });
+        }
+        
+        // Анімація при прокрутці
+        const scrollSections = document.querySelectorAll('.scroll-section');
+        
+        const checkScroll = () => {
+            scrollSections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.8) {
+                    section.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', checkScroll);
+        checkScroll(); // Перевірка при завантаженні
+        
+        // Додаємо подію для перевірки при зміні розміру вікна
+        window.addEventListener('resize', checkScroll);
+    </script>
 </body>
 </html>
