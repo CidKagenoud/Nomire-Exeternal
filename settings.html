@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Налаштування - Nomire External</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Rajdhani:wght@500;700&family=Audiowide&family=Chakra+Petch:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0055FF;
+            --secondary-color: #00C6FF;
+            --text-color: #fff;
+            --bg-color: #000;
+            --card-bg: #0c0c0c;
+            --accent-color: #2673F8;
+            --light-accent: rgba(0, 85, 255, 0.6);
+            --header-font: 'Rajdhani', sans-serif;
+            --body-font: 'Montserrat', sans-serif;
+            --title-font: 'Audiowide', cursive;
+        }
+
+        /* Додаткові теми */
+        [data-theme="dark"] {
+            --primary-color: #0055FF;
+            --secondary-color: #00C6FF;
+            --text-color: #fff;
+            --bg-color: #000;
+            --card-bg: #0c0c0c;
+            --accent-color: #2673F8;
+            --light-accent: rgba(0, 85, 255, 0.6);
+        }
+
+        [data-theme="light"] {
+            --primary-color: #0066FF;
+            --secondary-color: #00A8FF;
+            --text-color: #222;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --accent-color: #0055FF;
+            --light-accent: rgba(0, 85, 255, 0.2);
+        }
+
+        [data-theme="cyber"] {
+            --primary-color: #00FFAA;
+            --secondary-color: #FF00AA;
+            --text-color: #E0E0E0;
+            --bg-color: #050517;
+            --card-bg: #0a0a2a;
+            --accent-color: #00DDFF;
+            --light-accent: rgba(0, 255, 170, 0.6);
+        }
+
+        [data-theme="midnight"] {
+            --primary-color: #9400D3;
+            --secondary-color: #4B0082;
+            --text-color: #E6E6FA;
+            --bg-color: #0F0524;
+            --card-bg: #1D1135;
+            --accent-color: #9370DB;
+            --light-accent: rgba(148, 0, 211, 0.6);
+        }
+
+        [data-theme="sunset"] {
+            --primary-color: #FF5733;
+            --secondary-color: #FFBD33;
+            --text-color: #FFF8E1;
+            --bg-color: #2E1A00;
+            --card-bg: #3B2100;
+            --accent-color: #FF8C33;
+            --light-accent: rgba(255, 87, 51, 0.6);
+        }
+        
+        body {
+            font-family: var(--body-font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            box-sizing: border-box;
+        }
+        
+        header {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: slideDown 1s ease-out 0.5s forwards;
+            position: relative;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-right: 15px;
+            font-family: 'Chakra Petch', sans-serif;
+            position: relative;
+            overflow: hidden;
+            animation: glowing 3s infinite alternate;
+            font-size: 16px;
+            letter-spacing: -1px;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.1) rotate(5deg);
+            cursor: pointer;
+        }
+        
+        @keyframes glowing {
+            0% {
+                box-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color);
+                background-color: var(--primary-color);
+            }
+            100% {
+                box-shadow: 0 0 15px var(--secondary-color), 0 0 20px var(--secondary-color);
+                background-color: var(--primary-color);
+            }
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(45deg);
+            animation: shine 4s infinite;
+        }
+        
+        @keyframes shine {
+            0% {
+                top: -150%;
+                left: -150%;
+            }
+            100% {
+                top: 150%;
+                left: 150%;
+            }
+        }
+        
+        .site-name {
+            font-size: 28px;
+            font-family: var(--header-font);
+            font-weight: 700;
+            letter-spacing: 2px;
+            position: relative;
+            transition: text-shadow 0.3s;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .site-name:hover {
+            text-shadow: 0 0 15px var(--light-accent);
+            cursor: pointer;
+        }
+        
+        /* Навігаційне меню */
+        nav {
+            perspective: 1000px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .nav-link {
+            font-family: var(--header-font);
+            font-weight: 500;
+            font-size: 18px;
+            color: var(--text-color);
+            text-decoration: none;
+            position: relative;
+            padding: 5px 10px;
+            transition: all 0.3s;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::before {
+            width: 100%;
+        }
+        
+        .nav-link:hover {
+            text-shadow: 0 0 8px var(--light-accent);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active::before {
+            width: 100%;
+        }
+        
+        /* Мобільне меню */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        /* Мобільна навігація */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 999;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .mobile-nav-link {
+            font-family: var(--header-font);
+            font-weight: 500;
+            font-size: 24px;
+            color: var(--text-color);
+            text-decoration: none;
+            position: relative;
+            padding: 10px;
+            transition: all 0.3s;
+            display: block;
+        }
+        
+        .mobile-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+        
+        .mobile-nav-link:hover::after,
+        .mobile-nav-link:active::after {
+            width: 70%;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 30px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1000;
+        }
+        
+        /* Затемнення фону при відкритому мобільному меню */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+
+        /* Стилі сторінки налаштувань */
+        .settings-title {
+            font-size: 40px;
+            margin: 40px 0 30px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            text-shadow: 0 0 15px var(--light-accent);
+            position: relative;
+            font-family: var(--title-font);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .settings-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            animation: cardAppear 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .settings-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes cardAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .settings-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .settings-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .settings-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .settings-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .settings-card h3 {
+            font-family: var(--header-font);
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .settings-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), transparent);
+        }
+
+        /* Теми */
+        .theme-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .theme-option {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .theme-option:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-option.active {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px var(--light-accent);
+        }
+
+        .theme-option[data-theme="dark"] {
+            background: linear-gradient(135deg, #000000, #0055FF);
+        }
+
+        .theme-option[data-theme="light"] {
+            background: linear-gradient(135deg, #f8f9fa, #0066FF);
+        }
+
+        .theme-option[data-theme="cyber"] {
+            background: linear-gradient(135deg, #050517, #00FFAA);
+        }
+
+        .theme-option[data-theme="midnight"] {
+            background: linear-gradient(135deg, #0F0524, #9400D3);
+        }
+
+        .theme-option[data-theme="sunset"] {
+            background: linear-gradient(135deg, #2E1A00, #FF5733);
+        }
+
+        /* Анімація фону */
+        .animation-toggle, .notification-toggle, .sound-toggle, .language-select {
+            margin: 15px 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            margin-right: 15px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #333;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--accent-color);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(30px);
+        }
+
+        .setting-row {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .setting-label {
+            margin-left: 10px;
+            font-size: 16px;
+        }
+
+        /* Volume control */
+        .volume-control {
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .volume-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 5px;
+            border-radius: 5px;
+            background: #333;
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .volume-display {
+            margin-top: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* Select dropdown */
+        .custom-select {
+            position: relative;
+            display: block;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .custom-select select {
+            display: block;
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 16px;
+            font-family: var(--body-font);
+            color: var(--text-color);
+            background-color: rgba(30, 30, 30, 0.6);
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            appearance: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .custom-select select:focus {
+            outline: none;
+            box-shadow: 0 0 10px var(--light-accent);
+        }
+
+        .custom-select::after {
+            content: '▼';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--accent-color);
+        }
+
+        /* Font size settings */
+        .font-size-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .font-size-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(30, 30, 30, 0.6);
+            border: 2px solid var(--primary-color);
+            color: var(--text-color);
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .font-size-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .font-size-value {
+            font-size: 18px;
+            width: 60px;
+            text-align: center;
+        }
+
+        /* Кнопка зберегти зміни */
+        .save-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+            background: var(--accent-color);
+            color: white;
+            font-family: var(--body-font);
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            position: relative;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(38, 115, 248, 0.4);
+            border: none;
+            cursor: pointer;
+            z-index: 1;
+            margin-bottom: 40px;
+        }
+        
+        .save-btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .save-btn:active {
+            transform: translateY(0);
+        }
+
+        .reset-btn {
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--text-color);
+            margin-left: 15px;
+        }
+
+        .reset-btn:hover {
+            background: rgba(38, 115, 248, 0.2);
+        }
+
+        /* Notification toast */
+        .notification-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+
+        .notification-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .notification-icon {
+            margin-right: 15px;
+            font-size: 20px;
+        }
+
+        /* Адаптивність */
+        @media (max-width: 992px) {
+            .settings-title {
+                font-size: 36px;
+            }
+            
+            .settings-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .settings-title {
+                font-size: 32px;
+            }
+            
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .site-name {
+                font-size: 24px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            /* Показуємо кнопку мобільного меню на мобільних */
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .settings-title {
+                font-size: 28px;
+            }
+            
+            .logo {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+            
+            .site-name {
+                font-size: 20px;
+            }
+            
+            .theme-option {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <div class="container">
+        <header>
+            <div class="logo-wrap">
+                <div class="logo">NE</div>
+                <div class="site-name">NOMIRE EXTERNAL</div>
+            </div>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="Index.html" class="nav-link">Головна</a></li>
+                    <li><a href="meet.html" class="nav-link">Мід</a></li>
+                    <li><a href="games.html" class="nav-link">Ігри</a></li>
+                    <li><a href="settings.html" class="nav-link active">Налаштування</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </header>
+        
+        <!-- Затемнення фону при відкритому меню -->
+        <div class="overlay" id="overlay"></div>
+        
+        <!-- Мобільне меню -->
+        <div class="mobile-nav" id="mobileNav">
+            <button class="close-menu" id="closeMenu">✕</button>
+            <ul class="mobile-nav-links">
+                <li><a href="Index.html" class="mobile-nav-link">Головна</a></li>
+                <li><a href="meet.html" class="mobile-nav-link">Мід</a></li>
+                <li><a href="games.html" class="mobile-nav-link">Ігри</a></li>
+                <li><a href="settings.html" class="mobile-nav-link">Налаштування</a></li>
+            </ul>
+        </div>
+        
+        <h1 class="settings-title">Налаштування</h1>
+        
+        <div class="settings-grid">
+            <!-- Карточка тем -->
+            <div class="settings-card">
+                <h3>Теми оформлення</h3>
+                <p>Оберіть тему, яка найкраще підходить вашим вподобанням</p>
+                
+                <div class="theme-options">
+                    <div class="theme-option active" data-theme="dark" title="Темна тема"></div>
+                    <div class="theme-option" data-theme="light" title="Світла тема"></div>
+                    <div class="theme-option" data-theme="cyber" title="Кібер"></div>
+                    <div class="theme-option" data-theme="midnight" title="Опівнічна"></div>
+                    <div class="theme-option" data-theme="sunset" title="Захід сонця"></div>
+                </div>
+            </div>
+            
+            <!-- Карточка анімацій -->
+            <div class="settings-card">
+                <h3>Анімації та ефекти</h3>
+                
+                <div class="setting-row">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="animationToggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="setting-label">Анімації елементів</span>
+                </div>
+                
+                <div class="setting-row">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="particlesToggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="setting-label">Фонові частинки</span>
+                </div>
+                
+                <div class="setting-row">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="glowToggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="setting-label">Світіння елементів</span>
+                </div>
+            </div>
+            
+            <!-- Карточка звуків -->
+            <div class="settings-card">
+                <h3>Звуки та сповіщення</h3>
+                
+                <div class="setting-row">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="soundToggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="setting-label">Звуки інтерфейсу</span>
+                </div>
+                
+                <div class="setting-row">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="notificationToggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="setting-label">Сповіщення</span>
+                </div>
+                
+                <div class="volume-control">
+                    <label for="volumeSlider">Гучність:</label>
+                    <input type="range" min="0" max="100" value="75" class="volume-slider" id="volumeSlider">
+                    <div class="volume-display">75%</div>
+                </div>
+            </div>
+            
+            <!-- Карточка налаштувань тексту -->
+            <div class="settings-card">
+                <h3>Налаштування тексту</h3>
+                
+                <div class="custom-select">
+                    <label for="fontSelect">Шрифт:</label>
+                    <select id="fontSelect">
+                        <option value="Montserrat">Montserrat</option>
+                        <option value="Rajdhani">Rajdhani</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Roboto">Roboto</option>
+                    </select>
+                </div>
+                
+                <div class="font-size-controls">
+                    <button class="font-size-btn" id="fontSizeDecrease">-</button>
+                    <span class="font-size-value" id="fontSizeValue">100%</span>
+                    <button class="font-size-btn" id="fontSizeIncrease">+</button>
+                </div>
+
+              <div class="setting-row" style="margin-top: 20px;">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="highContrastToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="setting-label">Високий контраст</span>
+                </div>
+            </div>
+            
+            <!-- Карточка локалізації -->
+            <div class="settings-card">
+                <h3>Мова та регіон</h3>
+                
+                <div class="custom-select">
+                    <label for="languageSelect">Мова інтерфейсу:</label>
+                    <select id="languageSelect">
+                        <option value="uk">Українська</option>
+                        <option value="en">English</option>
+                        <option value="pl">Polski</option>
+                        <option value="de">Deutsch</option>
+                    </select>
+                </div>
+                
+                <div class="custom-select">
+                    <label for="regionSelect">Регіон:</label>
+                    <select id="regionSelect">
+                        <option value="UA">Україна</option>
+                        <option value="EU">Європа</option>
+                        <option value="US">США</option>
+                        <option value="ASIA">Азія</option>
+                    </select>
+                </div>
+                
+                <div class="setting-row">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="autoLanguageToggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="setting-label">Автоматичне визначення мови</span>
+                </div>
+            </div>
+            
+            <!-- Карточка приватності -->
+            <div class="settings-card">
+                <h3>Конфіденційність</h3>
+                
+                <div class="setting-row">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="cookiesToggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="setting-label">Приймати файли cookie</span>
+                </div>
+                
+                <div class="setting-row">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="trackingToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="setting-label">Відстеження активності</span>
+                </div>
+                
+                <div class="setting-row">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="analyticsToggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="setting-label">Аналітика використання</span>
+                </div>
+                
+                <button class="save-btn reset-btn" id="clearDataBtn">Очистити дані</button>
+            </div>
+        </div>
+        
+        <!-- Кнопки дій -->
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="save-btn" id="saveSettingsBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                    <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+                Зберегти налаштування
+            </button>
+            <button class="save-btn reset-btn" id="resetSettingsBtn">Скинути налаштування</button>
+        </div>
+        
+        <!-- Сповіщення про збереження -->
+        <div class="notification-toast" id="saveNotification">
+            <div class="notification-icon">✓</div>
+            <div class="notification-text">Налаштування успішно збережені!</div>
+        </div>
+    </div>
+    
+    <script>
+        // Виконуємо код після повного завантаження DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            // Отримуємо посилання на елементи
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const closeMenu = document.getElementById('closeMenu');
+            const overlay = document.getElementById('overlay');
+            
+            // Функція для відкриття мобільного меню
+            function openMobileMenu() {
+                mobileNav.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Блокуємо прокрутку сторінки
+            }
+            
+            // Функція для закриття мобільного меню
+            function closeMobileMenu() {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = ''; // Відновлюємо прокрутку
+            }
+            
+            // Додаємо обробники подій
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', openMobileMenu);
+            }
+            
+            if (closeMenu) {
+                closeMenu.addEventListener('click', closeMobileMenu);
+            }
+            
+            if (overlay) {
+                overlay.addEventListener('click', closeMobileMenu);
+            }
+            
+            // Закриття меню при кліку на пункт меню
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+            
+            // Обробка перемикання теми
+            const themeOptions = document.querySelectorAll('.theme-option');
+            
+            themeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Видаляємо активний клас з усіх опцій
+                    themeOptions.forEach(opt => opt.classList.remove('active'));
+                    
+                    // Додаємо активний клас вибраній опції
+                    this.classList.add('active');
+                    
+                    // Змінюємо тему
+                    const theme = this.getAttribute('data-theme');
+                    document.body.setAttribute('data-theme', theme);
+                    
+                    // Зберігаємо вибір у localStorage
+                    localStorage.setItem('nomire-theme', theme);
+                    
+                    // Додаємо звуковий ефект при зміні теми (якщо звуки увімкнені)
+                    if (document.getElementById('soundToggle').checked) {
+                        playSound('switch');
+                    }
+                });
+            });
+            
+            // Функція для фіктивного відтворення звуку
+            function playSound(soundType) {
+                console.log(`Грає звук: ${soundType}`);
+                // У реальному проекті тут можна додати відтворення звуку
+            }
+            
+            // Гучність слайдер
+            const volumeSlider = document.getElementById('volumeSlider');
+            const volumeDisplay = document.querySelector('.volume-display');
+            
+            if (volumeSlider && volumeDisplay) {
+                volumeSlider.addEventListener('input', function() {
+                    volumeDisplay.textContent = this.value + '%';
+                });
+            }
+            
+            // Налаштування розміру шрифту
+            const fontSizeDecrease = document.getElementById('fontSizeDecrease');
+            const fontSizeIncrease = document.getElementById('fontSizeIncrease');
+            const fontSizeValue = document.getElementById('fontSizeValue');
+            let fontSize = 100;
+            
+            if (fontSizeDecrease && fontSizeIncrease && fontSizeValue) {
+                fontSizeDecrease.addEventListener('click', function() {
+                    if (fontSize > 70) {
+                        fontSize -= 10;
+                        updateFontSize();
+                    }
+                });
+                
+                fontSizeIncrease.addEventListener('click', function() {
+                    if (fontSize < 150) {
+                        fontSize += 10;
+                        updateFontSize();
+                    }
+                });
+                
+                function updateFontSize() {
+                    fontSizeValue.textContent = fontSize + '%';
+                    document.documentElement.style.fontSize = (fontSize / 100) + 'rem';
+                    localStorage.setItem('nomire-font-size', fontSize);
+                }
+            }
+            
+            // Обробка кнопки "Зберегти налаштування"
+            const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+            const saveNotification = document.getElementById('saveNotification');
+            
+            if (saveSettingsBtn && saveNotification) {
+                saveSettingsBtn.addEventListener('click', function() {
+                    // Зберігання налаштувань (тут можна додати логіку для збереження всіх налаштувань)
+                    
+                    // Лише для прикладу: зберігаємо стан перемикачів
+                    const toggleSettings = {
+                        animations: document.getElementById('animationToggle').checked,
+                        particles: document.getElementById('particlesToggle').checked,
+                        glow: document.getElementById('glowToggle').checked,
+                        sound: document.getElementById('soundToggle').checked,
+                        notifications: document.getElementById('notificationToggle').checked,
+                        highContrast: document.getElementById('highContrastToggle').checked,
+                        autoLanguage: document.getElementById('autoLanguageToggle').checked,
+                        cookies: document.getElementById('cookiesToggle').checked,
+                        tracking: document.getElementById('trackingToggle').checked,
+                        analytics: document.getElementById('analyticsToggle').checked
+                    };
+                    
+                    localStorage.setItem('nomire-settings', JSON.stringify(toggleSettings));
+                    
+                    // Показуємо сповіщення про успішне збережено
+                    showNotification();
+                    
+                    // Відтворюємо звук збереження (якщо звуки увімкнені)
+                    if (document.getElementById('soundToggle').checked) {
+                        playSound('save');
+                    }
+                });
+                
+                function showNotification() {
+                    saveNotification.classList.add('show');
+                    
+                    setTimeout(() => {
+                        saveNotification.classList.remove('show');
+                    }, 3000);
+                }
+            }
+            
+            // Скидання налаштувань
+            const resetSettingsBtn = document.getElementById('resetSettingsBtn');
+            
+            if (resetSettingsBtn) {
+                resetSettingsBtn.addEventListener('click', function() {
+                    // Скидаємо всі налаштування до значень за замовчуванням
+                    
+                    // Тема
+                    document.body.setAttribute('data-theme', 'dark');
+                    themeOptions.forEach(opt => {
+                        opt.classList.remove('active');
+                        if (opt.getAttribute('data-theme') === 'dark') {
+                            opt.classList.add('active');
+                        }
+                    });
+                    
+                    // Скидаємо перемикачі
+                    document.getElementById('animationToggle').checked = true;
+                    document.getElementById('particlesToggle').checked = true;
+                    document.getElementById('glowToggle').checked = true;
+                    document.getElementById('soundToggle').checked = true;
+                    document.getElementById('notificationToggle').checked = true;
+                    document.getElementById('highContrastToggle').checked = false;
+                    document.getElementById('autoLanguageToggle').checked = true;
+                    document.getElementById('cookiesToggle').checked = true;
+                    document.getElementById('trackingToggle').checked = false;
+                    document.getElementById('analyticsToggle').checked = true;
+                    
+                    // Скидаємо гучність
+                    volumeSlider.value = 75;
+                    volumeDisplay.textContent = '75%';
+                    
+                    // Скидаємо розмір шрифту
+                    fontSize = 100;
+                    fontSizeValue.textContent = '100%';
+                    document.documentElement.style.fontSize = '1rem';
+                    
+                    // Скидаємо вибір у селектах
+                    document.getElementById('fontSelect').value = 'Montserrat';
+                    document.getElementById('languageSelect').value = 'uk';
+                    document.getElementById('regionSelect').value = 'UA';
+                    
+                    // Видаляємо збережені налаштування з localStorage
+                    localStorage.removeItem('nomire-theme');
+                    localStorage.removeItem('nomire-settings');
+                    localStorage.removeItem('nomire-font-size');
+                    
+                    // Показуємо сповіщення
+                    showNotification();
+                    
+                    // Відтворюємо звук скидання (якщо звуки увімкнені)
+                    if (document.getElementById('soundToggle').checked) {
+                        playSound('reset');
+                    }
+                });
+            }
+            
+            // Кнопка очищення даних
+            const clearDataBtn = document.getElementById('clearDataBtn');
+            
+            if (clearDataBtn) {
+                clearDataBtn.addEventListener('click', function() {
+                    if (confirm('Ви впевнені, що хочете очистити всі збережені дані?')) {
+                        // Очищаємо всі дані з localStorage
+                        localStorage.clear();
+                        
+                        // Показуємо сповіщення
+                        showNotification();
+                        
+                        // Відтворюємо звук очищення (якщо звуки увімкнені)
+                        if (document.getElementById('soundToggle').checked) {
+                            playSound('clear');
+                        }
+                    }
+                });
+            }
+            
+            // Завантаження збережених налаштувань при завантаженні сторінки
+            function loadSavedSettings() {
+                // Завантаження теми
+                const savedTheme = localStorage.getItem('nomire-theme');
+                if (savedTheme) {
+                    document.body.setAttribute('data-theme', savedTheme);
+                    themeOptions.forEach(opt => {
+                        opt.classList.remove('active');
+                        if (opt.getAttribute('data-theme') === savedTheme) {
+                            opt.classList.add('active');
+                        }
+                    });
+                }
+                
+                // Завантаження налаштувань
+                const savedSettings = localStorage.getItem('nomire-settings');
+                if (savedSettings) {
+                    const settings = JSON.parse(savedSettings);
+                    
+                    // Встановлюємо стан перемикачів
+                    if (settings.animations !== undefined) document.getElementById('animationToggle').checked = settings.animations;
+                    if (settings.particles !== undefined) document.getElementById('particlesToggle').checked = settings.particles;
+                    if (settings.glow !== undefined) document.getElementById('glowToggle').checked = settings.glow;
+                    if (settings.sound !== undefined) document.getElementById('soundToggle').checked = settings.sound;
+                    if (settings.notifications !== undefined) document.getElementById('notificationToggle').checked = settings.notifications;
+                    if (settings.highContrast !== undefined) document.getElementById('highContrastToggle').checked = settings.highContrast;
+                    if (settings.autoLanguage !== undefined) document.getElementById('autoLanguageToggle').checked = settings.autoLanguage;
+                    if (settings.cookies !== undefined) document.getElementById('cookiesToggle').checked = settings.cookies;
+                    if (settings.tracking !== undefined) document.getElementById('trackingToggle').checked = settings.tracking;
+                    if (settings.analytics !== undefined) document.getElementById('analyticsToggle').checked = settings.analytics;
+                }
+                
+                // Завантаження розміру шрифту
+                const savedFontSize = localStorage.getItem('nomire-font-size');
+                if (savedFontSize) {
+                    fontSize = parseInt(savedFontSize);
+                    fontSizeValue.textContent = fontSize + '%';
+                    document.documentElement.style.fontSize = (fontSize / 100) + 'rem';
+                }
+            }
+            
+            // Викликаємо функцію завантаження налаштувань
+            loadSavedSettings();
+        });
+    </script>
+</body>
+</html>
