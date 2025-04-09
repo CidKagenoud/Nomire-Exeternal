@@ -210,7 +210,7 @@
             height: 100%;
             background-color: rgba(17, 17, 17, 0.95);
             z-index: 999;
-            transition: right 0.3s ease;
+            transition: right 0.25s ease-out; /* Швидша і плавніша анімація */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -405,18 +405,6 @@
             height: 16px;
             border-radius: 50%;
             border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .meet-control.minimize {
-            background-color: #FFC107;
-        }
-        
-        .meet-control.maximize {
-            background-color: #4CAF50;
-        }
-        
-        .meet-control.close {
-            background-color: #F44336;
         }
         
         .meet-body {
@@ -657,11 +645,11 @@
             }
             
             .meet-heading {
-                font-size: 24px;
+                font-size: 26px !important; /* Збільшуємо розмір */
             }
             
             .meet-text {
-                font-size: 15px;
+                font-size: 16px !important; /* Збільшуємо розмір */
             }
             
             .meet-features {
@@ -673,7 +661,7 @@
             }
             
             .feature-title {
-                font-size: 16px;
+                font-size: 22px !important; /* Збільшуємо розмір */
             }
             
             .feature-desc {
@@ -681,10 +669,10 @@
             }
             
             .join-button {
-                width: 100%;
-                padding: 12px 20px;
-                font-size: 16px;
-                justify-content: center;
+                border-radius: 10px !important;
+                width: calc(100% - 20px) !important; /* Зменшуємо ширину на 20px */
+                margin-left: 10px !important; /* Додаємо відступ зліва */
+                margin-right: 10px !important; /* Додаємо відступ справа */
             }
         }
             
