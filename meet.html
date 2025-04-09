@@ -189,7 +189,9 @@
         .nav-link:hover .nav-link-icon {
             transform: translateY(-2px) scale(1.1);
         }
-        
+</style>
+</head>
+<style>
         /* Мобільне меню */
         .mobile-menu-btn {
             display: none;
@@ -310,216 +312,6 @@
             border-color: rgba(0, 198, 255, 0.3);
         }
         
-        /* Середнє вікно з інформацією */
-        .mid-container {
-            max-width: 800px;
-            margin: 60px auto;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: slideUp 1s ease-out 1s forwards;
-        }
-        
-        @keyframes slideUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .mid-window {
-            background: rgba(17, 17, 17, 0.7);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3), 
-                        0 0 30px rgba(0, 85, 255, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 85, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .mid-window::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: var(--gradient);
-        }
-        
-        .mid-window::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 30%;
-            height: 250px;
-            background: radial-gradient(circle at bottom right, 
-                                rgba(0, 198, 255, 0.2), 
-                                transparent 60%);
-            z-index: -1;
-            filter: blur(30px);
-        }
-        
-        .mid-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .mid-title {
-            font-family: 'Audiowide', cursive;
-            font-size: 36px;
-            margin-bottom: 15px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-            position: relative;
-        }
-        
-        .mid-subtitle {
-            font-size: 18px;
-            color: var(--text-secondary);
-            margin-top: 0;
-        }
-        
-        .mid-content {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-        
-        .mid-section {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .mid-section:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .mid-icon {
-            flex-shrink: 0;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(0, 85, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            color: var(--accent);
-            font-size: 24px;
-        }
-        
-        .mid-info {
-            flex: 1;
-        }
-        
-        .mid-info h3 {
-            font-size: 20px;
-            margin-top: 0;
-            margin-bottom: 10px;
-            color: var(--text);
-        }
-        
-        .mid-info p {
-            margin: 0;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            font-size: 16px;
-        }
-        
-        .mid-decoration {
-            position: absolute;
-            border-radius: 50%;
-            background: var(--gradient);
-            filter: blur(80px);
-            opacity: 0.4;
-            z-index: -1;
-        }
-        
-        .decoration-1 {
-            width: 300px;
-            height: 300px;
-            top: -150px;
-            left: -150px;
-        }
-        
-        .decoration-2 {
-            width: 200px;
-            height: 200px;
-            bottom: -100px;
-            right: -100px;
-        }
-        
-        .mid-join-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: var(--primary);
-            color: white;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: 18px;
-            text-decoration: none;
-            padding: 16px 35px;
-            border-radius: 10px;
-            margin: 40px auto 10px;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 25px rgba(0, 85, 255, 0.3);
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            max-width: 300px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .mid-join-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--accent);
-            transition: all 0.4s ease;
-            z-index: -1;
-        }
-        
-        .mid-join-button:hover::before {
-            left: 0;
-        }
-        
-        .mid-join-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 198, 255, 0.4);
-        }
-        
-        .mid-join-button:active {
-            transform: translateY(-2px);
-        }
-        
-        .mid-join-icon {
-            font-size: 20px;
-        }
-        
         /* Затемнення фону при відкритому мобільному меню */
         .overlay {
             display: none;
@@ -538,6 +330,183 @@
             display: block;
         }
         
+        /* Картка з інформацією про мід */
+        .mid-card {
+            background: rgba(17, 17, 17, 0.8);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 50px auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 85, 255, 0.2);
+            animation: fadeIn 1s ease-out 1s forwards;
+            opacity: 0;
+        }
+        
+        .mid-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(125deg, 
+                transparent 0%, 
+                rgba(0, 85, 255, 0.1) 40%,
+                rgba(0, 198, 255, 0.2) 60%,
+                transparent 100%);
+            transform: translateY(-100%);
+            animation: shine 8s infinite;
+            z-index: 0;
+        }
+        
+        @keyframes shine {
+            0% {
+                transform: translateY(-100%) rotate(10deg);
+            }
+            50% {
+                transform: translateY(100%) rotate(10deg);
+            }
+            100% {
+                transform: translateY(100%) rotate(10deg);
+            }
+        }
+
+        .mid-card-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .mid-title {
+            font-size: 36px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 198, 255, 0.3);
+            font-family: 'Audiowide', cursive;
+        }
+        
+        .mid-description {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+        
+        .join-button {
+            display: block;
+            width: 200px;
+            margin: 30px auto 0;
+            background: var(--primary);
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 85, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .join-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: all 0.4s;
+            z-index: -1;
+        }
+        
+        .join-button:hover::before {
+            left: 0;
+        }
+        
+        .join-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 198, 255, 0.5);
+        }
+        
+        /* Адаптивність */
+        @media (max-width: 992px) {
+            .mid-card {
+                padding: 30px;
+                margin: 40px 20px;
+            }
+            
+            .mid-title {
+                font-size: 32px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            /* Показуємо кнопку мобільного меню на мобільних */
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mid-card {
+                padding: 25px;
+                margin: 30px 15px;
+            }
+            
+            .mid-title {
+                font-size: 28px;
+            }
+            
+            .mid-description {
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .mid-card {
+                padding: 20px;
+                margin: 20px 10px;
+                border-radius: 16px;
+            }
+            
+            .mid-title {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+            
+            .mid-description {
+                font-size: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .join-button {
+                padding: 12px 25px;
+                font-size: 16px;
+                width: 180px;
+            }
+        }
+        
         /* Оновлений футер з копірайтом */
         footer {
             margin-top: 70px;
@@ -547,77 +516,6 @@
             color: var(--text-secondary);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             background: linear-gradient(to bottom, transparent, rgba(0, 85, 255, 0.05));
-        }
-        
-        /* Адаптивність */
-        @media (max-width: 992px) {
-            .mid-window {
-                padding: 30px;
-            }
-            
-            .mid-title {
-                font-size: 30px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .mid-window {
-                padding: 25px;
-            }
-            
-            .mid-section {
-                flex-direction: column;
-            }
-            
-            .mid-icon {
-                margin-bottom: 15px;
-                margin-right: 0;
-            }
-            
-            .mid-container {
-                margin: 40px auto;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 15px;
-            }
-            
-            .logo {
-                width: 35px;
-                height: 35px;
-                font-size: 14px;
-            }
-            
-            .site-name {
-                font-size: 18px;
-            }
-            
-            .mid-window {
-                padding: 20px;
-            }
-            
-            .mid-title {
-                font-size: 24px;
-            }
-            
-            .mid-subtitle {
-                font-size: 16px;
-            }
-            
-            .mid-join-button {
-                padding: 14px 25px;
-                font-size: 16px;
-            }
         }
     </style>
 </head>
@@ -632,7 +530,7 @@
             <nav>
                 <ul class="nav-links">
                     <li>
-                        <a href="index.html" class="nav-link">
+                        <a href="Index.html" class="nav-link">
                             <svg class="nav-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -675,99 +573,73 @@
         </header>
         
         <!-- Затемнення фону при відкритому меню -->
-                <div class="overlay" id="overlay"></div>
+        <div class="overlay" id="overlay"></div>
 
         <!-- Мобільне меню -->
         <div class="mobile-nav" id="mobileNav">
             <button class="close-menu" id="closeMenu">✕</button>
             <ul class="mobile-nav-links">
                 <li>
-                    <a href="Index.html" class="mobile-nav-link active">
+                    <a href="Index.html" class="mobile-nav-link">
                         <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                             <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                            </svg>
-                            Головна
-                        </a>
-                    </li>
-                    <li>
-                        <a href="meet.html" class="mobile-nav-link">
-                            <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg> 
-                            Мід
-                        </a>
-                    </li>
-                    <li>
-                        <a href="games.html" class="mobile-nav-link">
-                            <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                            Ігри
-                        </a>
-                    </li>
-                    <li>
-                        <a href="settings.html" class="mobile-nav-link">
-                            <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                           </svg>
-                            Налаштування
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                        </svg>
+                        Головна
+                    </a>
+                </li>
+                <li>
+                    <a href="meet.html" class="mobile-nav-link active">
+                        <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg> 
+                        Мід
+                    </a>
+                </li>
+                <li>
+                    <a href="games.html" class="mobile-nav-link">
+                        <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        Ігри
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html" class="mobile-nav-link">
+                        <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                        Налаштування
+                    </a>
+                </li>
+            </ul>
+        </div>
                                 
-        <div class="main-content">
-            <div class="welcome-text">
-                <h1>Ласкаво просимо!</h1>
-                <p>Раді тебе бачити на нашому сайті. Надіємось, що ти залишишся з нами надовго!</p>
-                
-                <a href="https://t.me/username" class="telegram-button">
-                    <svg class="telegram-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 2L11 13"></path>
-                        <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
-                    </svg>
-                    Telegram
-                </a>
-            </div>
-
-            <div class="visual-container">
-    <div class="card-container">
-        <div class="card">
-            <div class="card-elements">
-                <div class="element element-1"></div>
-                <div class="element element-2"></div>
-                <div class="element element-3"></div>
-                <div class="card-grid"></div>
-            </div>
-            <div class="card-content">
-                <div>
-                    <h3 class="card-title">Nomire External</h3>
-                    <p class="card-description">Наш сайт пропонує зручний доступ до всіх необхідних інструментів та інформації. Приєднуйтесь до нашої спільноти вже сьогодні!</p>
-                </div>
-                <a href="meet.html" class="card-button">
-                    Дізнатися більше
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14"></path>
-                        <path d="M12 5l7 7-7 7"></path>
-                    </svg>
+        <!-- Картка з інформацією про мід -->
+        <div class="mid-card">
+            <div class="mid-card-content">
+                <h1 class="mid-title">Наш Мід</h1>
+                <p class="mid-description">
+                    Давно хотів поговорити зі своїм другом? У нас є чудове місце для спілкування та розваг. 
+                    Приєднуйся до нашої спільноти, де ти знайдеш нових друзів, цікаві обговорення та безліч 
+                    розваг. Ми створили унікальний простір, де кожен знайде щось для себе.
+                </p>
+                <a href="https://t.me/username" class="join-button">
+                    Приєднатися
                 </a>
             </div>
         </div>
-    </div>
-</div>
-</div>
         
         <footer>
             &copy; 2025 Nomire External. Усі права захищено.
         </footer>
     </div>
 
-    <script>
+        <script>
         // Додай цей код після існуючого JavaScript
         // Визначаємо поточну сторінку і додаємо клас active для мобільного меню
         document.addEventListener('DOMContentLoaded', function() {
