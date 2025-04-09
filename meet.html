@@ -310,17 +310,16 @@
             border-color: rgba(0, 198, 255, 0.3);
         }
         
-        /* Середній контейнер з інформацією для сторінки Мід */
+        /* Середнє вікно з інформацією */
         .mid-container {
-            margin: 50px auto;
-            max-width: 900px;
-            padding: 0 20px;
-            text-align: center;
-            animation: fadeUp 1s ease 0.5s forwards;
+            max-width: 800px;
+            margin: 60px auto;
             opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 1s ease-out 1s forwards;
         }
         
-        @keyframes fadeUp {
+        @keyframes slideUp {
             0% {
                 opacity: 0;
                 transform: translateY(30px);
@@ -331,149 +330,143 @@
             }
         }
         
-        .mid-title {
-            font-size: 48px;
-            margin-bottom: 20px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            font-family: 'Roboto', sans-serif;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-            text-shadow: 0 0 10px rgba(0, 198, 255, 0.3);
-        }
-        
-        .mid-subtitle {
-            font-size: 24px;
-            margin-bottom: 40px;
-            color: var(--text-secondary);
-            line-height: 1.4;
-        }
-        
-        /* Інформаційне вікно */
-        .info-window {
+        .mid-window {
             background: rgba(17, 17, 17, 0.7);
             border-radius: 20px;
             padding: 40px;
-            margin: 40px auto;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3), 
+                        0 0 30px rgba(0, 85, 255, 0.2);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 85, 255, 0.2);
-            transition: transform 0.5s, box-shadow 0.5s;
-            max-width: 700px;
+            position: relative;
+            overflow: hidden;
         }
         
-        .info-window:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 85, 255, 0.25);
-        }
-        
-        .info-window::before {
+        .mid-window::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(125deg, 
-                transparent 0%, 
-                rgba(0, 85, 255, 0.1) 40%,
-                rgba(0, 198, 255, 0.2) 60%,
-                transparent 100%);
-            transform: translateY(-100%);
-            animation: shine 5s infinite;
-            pointer-events: none;
+            height: 6px;
+            background: var(--gradient);
         }
         
-        @keyframes shine {
-            0% {
-                transform: translateY(-100%) rotate(10deg);
-            }
-            50% {
-                transform: translateY(100%) rotate(10deg);
-            }
-            100% {
-                transform: translateY(100%) rotate(10deg);
-            }
+        .mid-window::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 30%;
+            height: 250px;
+            background: radial-gradient(circle at bottom right, 
+                                rgba(0, 198, 255, 0.2), 
+                                transparent 60%);
+            z-index: -1;
+            filter: blur(30px);
         }
         
-        .info-window-title {
-            font-family: 'Audiowide', cursive;
-            font-size: 28px;
-            margin-bottom: 25px;
-            color: var(--accent);
+        .mid-header {
             text-align: center;
-        }
-        
-        .info-content {
-            text-align: left;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            font-size: 16px;
             margin-bottom: 30px;
         }
         
-        .info-content p {
-            margin-bottom: 20px;
-        }
-        
-        .info-highlight {
-            color: var(--accent);
-            font-weight: 700;
-        }
-        
-        .info-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin: 30px 0;
-        }
-        
-        .feature-item {
-            background: rgba(0, 85, 255, 0.1);
-            border-radius: 12px;
-            padding: 15px 25px;
-            flex: 1;
-            min-width: 180px;
-            max-width: 280px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(0, 198, 255, 0.2);
-            transition: all 0.3s;
-        }
-        
-        .feature-item:hover {
-            transform: translateY(-5px);
-            background: rgba(0, 85, 255, 0.15);
-            border-color: rgba(0, 198, 255, 0.3);
-        }
-        
-        .feature-icon {
-            font-size: 30px;
+        .mid-title {
+            font-family: 'Audiowide', cursive;
+            font-size: 36px;
             margin-bottom: 15px;
-            color: var(--accent);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            position: relative;
         }
         
-        .feature-title {
-            font-weight: 700;
-            margin-bottom: 8px;
+        .mid-subtitle {
             font-size: 18px;
-        }
-        
-        .feature-text {
             color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.5;
+            margin-top: 0;
         }
         
-        /* Кнопка приєднатись до міду */
-        .join-button {
-            display: inline-flex;
+        .mid-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .mid-section {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mid-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .mid-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 85, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--accent);
+            font-size: 24px;
+        }
+        
+        .mid-info {
+            flex: 1;
+        }
+        
+        .mid-info h3 {
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        
+        .mid-info p {
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+        
+        .mid-decoration {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient);
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+        }
+        
+        .decoration-1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            left: -150px;
+        }
+        
+        .decoration-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -100px;
+            right: -100px;
+        }
+        
+        .mid-join-button {
+            display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
@@ -483,21 +476,22 @@
             font-weight: 700;
             font-size: 18px;
             text-decoration: none;
-            padding: 15px 35px;
-            border-radius: 12px;
-            margin-top: 30px;
-            transition: all 0.3s;
-            box-shadow: 0 8px 25px rgba(0, 85, 255, 0.4);
+            padding: 16px 35px;
+            border-radius: 10px;
+            margin: 40px auto 10px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(0, 85, 255, 0.3);
             border: none;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             z-index: 1;
+            max-width: 300px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         
-        .join-button::before {
+        .mid-join-button::before {
             content: '';
             position: absolute;
             top: 0;
@@ -505,27 +499,27 @@
             width: 100%;
             height: 100%;
             background: var(--accent);
-            transition: all 0.4s;
+            transition: all 0.4s ease;
             z-index: -1;
         }
         
-        .join-button:hover::before {
+        .mid-join-button:hover::before {
             left: 0;
         }
         
-        .join-button:hover {
+        .mid-join-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0, 198, 255, 0.5);
+            box-shadow: 0 15px 30px rgba(0, 198, 255, 0.4);
         }
         
-        .join-button:active {
+        .mid-join-button:active {
             transform: translateY(-2px);
         }
         
-        .join-icon {
+        .mid-join-icon {
             font-size: 20px;
         }
-
+        
         /* Затемнення фону при відкритому мобільному меню */
         .overlay {
             display: none;
@@ -557,16 +551,12 @@
         
         /* Адаптивність */
         @media (max-width: 992px) {
-            .mid-title {
-                font-size: 42px;
-            }
-            
-            .mid-subtitle {
-                font-size: 20px;
-            }
-            
-            .info-window {
+            .mid-window {
                 padding: 30px;
+            }
+            
+            .mid-title {
+                font-size: 30px;
             }
         }
         
@@ -579,45 +569,27 @@
                 display: block;
             }
             
-            .mid-title {
-                font-size: 36px;
-            }
-            
-            .mid-subtitle {
-                font-size: 18px;
-            }
-            
-            .info-window {
+            .mid-window {
                 padding: 25px;
             }
             
-            .info-features {
+            .mid-section {
                 flex-direction: column;
-                align-items: center;
             }
             
-            .feature-item {
-                max-width: 100%;
-                width: 100%;
+            .mid-icon {
+                margin-bottom: 15px;
+                margin-right: 0;
             }
             
-            .join-button {
-                width: 100%;
-                padding: 15px 20px;
+            .mid-container {
+                margin: 40px auto;
             }
         }
-            
+        
         @media (max-width: 480px) {
             .container {
                 padding: 15px;
-            }
-            
-            .mid-title {
-                font-size: 30px;
-            }
-            
-            .mid-subtitle {
-                font-size: 16px;
             }
             
             .logo {
@@ -630,41 +602,26 @@
                 font-size: 18px;
             }
             
-            .info-window {
+            .mid-window {
                 padding: 20px;
             }
             
-            .info-window-title {
+            .mid-title {
                 font-size: 24px;
             }
             
-            .info-content {
-                font-size: 14px;
+            .mid-subtitle {
+                font-size: 16px;
             }
             
-            .join-button {
+            .mid-join-button {
+                padding: 14px 25px;
                 font-size: 16px;
-                padding: 12px 20px;
             }
-        }
-
-        /* Фоновий ефект */
-        .bg-dots {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.5;
-            background-image: radial-gradient(rgba(0, 85, 255, 0.1) 1px, transparent 1px);
-            background-size: 40px 40px;
         }
     </style>
 </head>
 <body>
-    <div class="bg-dots"></div>
     <div class="container">
         <header>
             <div class="logo-wrap">
@@ -675,7 +632,7 @@
             <nav>
                 <ul class="nav-links">
                     <li>
-                        <a href="Index.html" class="nav-link">
+                        <a href="index.html" class="nav-link">
                             <svg class="nav-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -885,4 +842,4 @@
         }
     </script>
 </body>
-</html>           
+</html>            
