@@ -210,7 +210,7 @@
             height: 100%;
             background-color: rgba(17, 17, 17, 0.95);
             z-index: 999;
-            transition: right 0.25s ease-out; /* Швидша і плавніша анімація */
+            transition: right 0.3s cubic-bezier(0.25, 1, 0.5, 1);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -641,11 +641,13 @@
             }
             
             .meet-window {
-                max-width: 95%;
+                border: 2px solid rgba(0, 85, 255, 0.3); /* Додати виразнішу рамку */
             }
             
             .meet-heading {
-                font-size: 26px !important; /* Збільшуємо розмір */
+                font-size: 26px !important;
+                color: var(--text); /* Додати явний колір */
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Додати тінь для кращого контрасту */
             }
             
             .meet-text {
@@ -661,18 +663,19 @@
             }
             
             .feature-title {
-                font-size: 22px !important; /* Збільшуємо розмір */
+                font-size: 18px !important;
+                margin-bottom: 8px;
             }
             
             .feature-desc {
-                font-size: 13px;
+                font-size: 14px !important;
+                line-height: 1.4;
             }
             
             .join-button {
-                border-radius: 10px !important;
-                width: calc(100% - 20px) !important; /* Зменшуємо ширину на 20px */
-                margin-left: 10px !important; /* Додаємо відступ зліва */
-                margin-right: 10px !important; /* Додаємо відступ справа */
+                width: 100% !important; /* Зробити кнопку на всю ширину */
+                box-sizing: border-box; /* Врахувати padding в розмірі */
+                border-radius: 10px !important; /* Повторити для впевненості */
             }
         }
             
@@ -686,7 +689,9 @@
             }
             
             .meet-title {
-                font-size: 18px;
+                font-size: 22px;
+                color: var(--text);
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
             }
             
             .meet-body {
