@@ -206,16 +206,16 @@
             position: fixed;
             top: 0;
             right: -100%;
-            width: 80%;
+            width: 85%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: rgba(17, 17, 17, 0.95);
             z-index: 999;
             transition: right 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 30px 20px;
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-left: 1px solid rgba(0, 85, 255, 0.2);
@@ -231,51 +231,83 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            gap: 30px;
-            text-align: center;
-            width: 100%;
+            gap: 20px;
+            width: 90%;
         }
         
         .mobile-nav-link {
             font-family: 'Rajdhani', sans-serif;
-            font-weight: 500;
-            font-size: 24px;
+            font-weight: 700;
+            font-size: 18px;
             color: var(--text);
             text-decoration: none;
+            padding: 12px 20px;
             position: relative;
-            padding: 10px;
             transition: all 0.3s;
-            display: block;
+            border-radius: 8px
+            text-transform: uppercase;
+            latter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255 0.1);
         }
         
         .mobile-nav-link::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
+            left: 0;
+            width: 4px;
+            height: 100%;
             background: var(--gradient);
-            transition: width 0.3s ease;
+            transition: all 0.3s ease;
+            opacity: 0;
+            border-radius: 8px 0 0 8px;
         }
         
-        .mobile-nav-link:hover::after,
-        .mobile-nav-link:active::after {
-            width: 70%;
+        .mobile-nav-link:hover::before,
+        .mobile-nav-link:active::before {
+            opacity: 1;
+        }
+
+        .mobile-nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 85, 255, 0.2);
+        }
+
+        .mobile-nav-link.active {
+            background: rgba(0, 86, 255, 0.15);
+            box-shadow: 0 5px 15px rgba(0, 85, 255, 0.03);
+            border: 1px solid rgba(0, 198, 255, 0.3);
+        }
+
+        .mobile-nav-icon {
+            margin-right: 15px;
+            font-size: 18px;
+            color: var(--accent);
         }
         
         .close-menu {
             position: absolute;
             top: 20px;
             right: 20px;
-            background: none;
-            border: none;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text);
-            font-size: 30px;
+            font-size: 18px;
             cursor: pointer;
-            padding: 10px;
+            padding: 8px 12px;
             z-index: 1000;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .close-menu:hover {
+            background: rgba(0, 85 ,255, 0.2);
+            border-color: rgba(0, 198, 255, 0.3);
         }
         
         /* Оновлений основний контент */
@@ -818,18 +850,51 @@
         
         <!-- Затемнення фону при відкритому меню -->
         <div class="overlay" id="overlay"></div>
-        
+
         <!-- Мобільне меню -->
         <div class="mobile-nav" id="mobileNav">
             <button class="close-menu" id="closeMenu">✕</button>
             <ul class="mobile-nav-links">
-                <li><a href="Index.html" class="mobile-nav-link">Головна</a></li>
-                <li><a href="meet.html" class="mobile-nav-link">Мід</a></li>
-                <li><a href="games.html" class="mobile-nav-link">Ігри</a></li>
-                <li><a href="settings.html" class="mobile-nav-link">Налаштування</a></li>
-            </ul>
-        </div>
-        
+                <li>
+                    <a href="Index.html" class="mobile-nav-link active">
+                        <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            Головна
+                        </a>
+                    </li>
+                    <li>
+                        <a href="meet.html" class="mobile-nav-link">
+                            <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg> 
+                            Мід
+                        </a>
+                    </li>
+                    <li>
+                        <a href="games.html" class="mobile-nav-link">
+                            <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                            Ігри
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html" class="mobile-nav-link">
+                            <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                           </svg>
+                            Налаштування
+                        </a>
+                    </li>
+                </ul>
+            </div>
+                                
         <div class="main-content">
             <div class="welcome-text">
                 <h1>Ласкаво просимо!</h1>
@@ -877,25 +942,23 @@
     </div>
 
     <script>
-        // Мобільне меню
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            document.getElementById('mobileNav').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
+        // Додай цей код після існуючого JavaScript
+        // Визначаємо поточну сторінку і додаємо клас active для мобільного меню
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'Index.html';
+
+            // Мобільне меню
+            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
         });
-        
-        document.getElementById('closeMenu').addEventListener('click', function() {
-            document.getElementById('mobileNav').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-        
-        document.getElementById('overlay').addEventListener('click', function() {
-            document.getElementById('mobileNav').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-        
+      
         // Інтерактивність для карточки
         const cardContainer = document.querySelector('.card-container');
         
