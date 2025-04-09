@@ -244,14 +244,14 @@
             padding: 12px 20px;
             position: relative;
             transition: all 0.3s;
-            border-radius: 8px
+            border-radius: 8px;
             text-transform: uppercase;
-            latter-spacing: 0.5px;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             background: rgba(255, 255, 255, 0.05);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .mobile-nav-link::after {
@@ -267,8 +267,8 @@
             border-radius: 8px 0 0 8px;
         }
         
-        .mobile-nav-link:hover::before,
-        .mobile-nav-link:active::before {
+        .mobile-nav-link:hover::after,
+        .mobile-nav-link:active::after {
             opacity: 1;
         }
 
@@ -945,8 +945,35 @@
         // Додай цей код після існуючого JavaScript
         // Визначаємо поточну сторінку і додаємо клас active для мобільного меню
         document.addEventListener('DOMContentLoaded', function() {
-            const currentPage = window.location.pathname.split('/').pop() || 'Index.html';
+            // Обработчики для мобильного меню
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const overlay = document.getElementById('overlay');
+            const closeMenu = document.getElementById('closeMenu');
+            // Открыть меню
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileNav.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Предотвращаем прокрутку страницы
+            });
 
+            // Закрыть меню (кнопка закрытия)
+            closeMenu.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = ''; // Возвращаем прокрутку
+            });
+
+            // Закрыть меню при клике на overlay
+            overlay.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Ваш существующий код
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            
             // Мобільне меню
             const mobileLinks = document.querySelectorAll('.mobile-nav-link');
             mobileLinks.forEach(link => {
@@ -958,7 +985,18 @@
                 }
             });
         });
-      
+
+        // Также добавляем активный класс для десктопного меню  
+        const desktopLinks = document.querySelectorAll('.nav-link');
+        desktopLinks.forEach(link => {
+            const linkHref = link.getAttribute('href');
+            if (linkHref === currentPage) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+
         // Інтерактивність для карточки
         const cardContainer = document.querySelector('.card-container');
         
