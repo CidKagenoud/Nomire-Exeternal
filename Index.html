@@ -52,15 +52,18 @@
         
         /* Оновлений хедер з новим стилем */
         header {
+            background-color: rgba(60, 60, 60, 0.6); /* Сірий колір з прозорістю */
+            border-radius: 15px; /* Закруглені краї */
+            padding: 10px 20px;
             display: flex;
-            align-items: center;
-            padding: 15px 0;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: slideDown 1s ease-out 0.5s forwards;
-            position: relative;
-            flex-wrap: wrap;
             justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(80, 80, 80, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            box-sizing: border-box;
         }
         
         @keyframes slideDown {
@@ -79,6 +82,7 @@
             align-items: center;
             user-select: text;
             cursor: default;
+            margin-right: 20px;
         }
         
         .logo {
