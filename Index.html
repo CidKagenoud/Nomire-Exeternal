@@ -52,15 +52,19 @@
         
         /* Оновлений хедер з новим стилем */
         header {
-            display: flex;
-            align-items: center;
-            padding: 15px 0;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: slideDown 1s ease-out 0.5s forwards;
-            position: relative;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            background-color: rgba(34, 34, 34, 0.8); /* Сірий напівпрозорий фон */
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 20px; /* Збільшуємо внутрішні відступи */
+        }
+
+        header:hover {
+            background-color: rgba(34, 34, 34, 0.9);
+            box-shadow: 0 6px 20px rgba(0, 85, 255, 0.15);
         }
         
         @keyframes slideDown {
