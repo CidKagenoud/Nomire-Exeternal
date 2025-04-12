@@ -4,35 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nomire External • Головна</title>
-    <!-- Додаємо favicon для відображення логотипу у вкладці браузера -->
     <link rel="icon" href="logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Rajdhani:wght@500;700&family=Audiowide&family=Chakra+Petch:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
     <style>
+        /* Modern Color Scheme */
         :root {
-            --primary: #0055FF;
-            --primary-light: #3378FF;
-            --primary-dark: #0044CC;
-            --accent: #00C6FF;
-            --accent-dark: #00A8E0;
+            --primary: #0062FF;
+            --primary-light: #4D94FF;
+            --primary-dark: #0043B0;
+            --accent: #00D4FF;
+            --accent-dark: #00B8E0;
             --text: #FFFFFF;
-            --text-secondary: #CCCCCC;
-            --dark: #111111;
-            --dark-light: #222222;
+            --text-secondary: #B0B8C1;
+            --dark: #070B14;
+            --dark-light: #111827;
+            --dark-lighter: #1F2937;
             --gradient: linear-gradient(135deg, var(--primary), var(--accent));
+            --glass: rgba(31, 41, 55, 0.6);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+        
+        /* Global Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--dark);
             color: var(--text);
             margin: 0;
             padding: 0;
             opacity: 0;
-            animation: fadeIn 1.5s ease-in-out forwards;
+            animation: fadeIn 1s ease-in-out forwards;
             overflow-x: hidden;
             position: relative;
+            line-height: 1.6;
+            background: radial-gradient(circle at 10% 20%, var(--dark-light) 0%, var(--dark) 90%);
         }
         
         @keyframes fadeIn {
@@ -44,55 +56,56 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
             position: relative;
             z-index: 1;
-            box-sizing: border-box;
         }
         
-        /* Оновлений хедер з новим стилем */
-        header {
-            background-color: rgba(60, 60, 60, 0.6); /* Сірий колір з прозорістю */
-            border-radius: 15px; /* Закруглені краї */
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(80, 80, 80, 0.3);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        /* Background Effects */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            box-sizing: border-box;
-
-            /* Стартові значення для анімації */
-
-            opacity: 0;
-            transform: translateY(-20px) scale(0.95);
-
-            /* Анімація появи */
-            animation: headerAppear 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(0, 98, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 98, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+            opacity: 0.3;
         }
-
-        /* Визначення анімації появи хедера */
-        @keyframes headerAppear {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px) scale(0.95);
-            }
-            60% {
-                transform: translateY(5px) scale(1.02);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        
+        .bg-glow {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(0, 98, 255, 0.08) 0%, transparent 35%);
+            z-index: -2;
+            opacity: 0.5;
+            transform: translateZ(0);
+            pointer-events: none;
+        }
+        
+        /* Improved Header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px 0;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(-15px);
+            animation: slideDown 0.8s ease-out 0.3s forwards;
+            position: relative;
         }
         
         @keyframes slideDown {
             0% {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(-15px);
             }
             100% {
                 opacity: 1;
@@ -103,48 +116,61 @@
         .logo-wrap {
             display: flex;
             align-items: center;
-            user-select: text;
-            cursor: default;
-            margin-right: 20px;
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out 0.6s forwards;
+            gap: 15px;
+            user-select: none;
         }
         
         .logo {
-            background-color: var(--primary);
+            background: var(--gradient);
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: bold;
-            margin-right: 15px;
-            font-family: 'Chakra Petch', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 18px;
             letter-spacing: -1px;
-            user-select: text;
-            box-shadow: 0 0 15px rgba(0, 85, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 98, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: skewX(-15deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
         }
         
         .site-name {
-            font-size: 24px;
-            font-family: 'Audiowide', cursive;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--text);
+            font-size: 22px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            user-select: text;
-            cursor: default;
+            user-select: none;
             background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 10px rgba(0, 198, 255, 0.3);
+            text-shadow: 0 2px 15px rgba(0, 212, 255, 0.3);
         }
         
-        /* ПОВНІСТЮ ОНОВЛЕНЕ МЕНЮ НАВІГАЦІЇ ДЛЯ ПК */
+        /* Enhanced Navigation */
         nav {
             perspective: 1000px;
         }
@@ -154,15 +180,13 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            gap: 10px;
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out 0.8s forwards;
+            gap: 8px;
         }
         
         .nav-link {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: 14px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
             color: var(--text);
             text-decoration: none;
             padding: 10px 20px;
@@ -175,73 +199,79 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--glass);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border);
         }
         
         .nav-link::before {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
-            width: 4px;
-            height: 100%;
+            width: 0;
+            height: 3px;
             background: var(--gradient);
             transition: all 0.3s ease;
-            opacity: 0;
+            border-radius: 3px 3px 0 0;
         }
         
         .nav-link:hover::before,
         .nav-link.active::before {
-            opacity: 1;
+            width: 100%;
         }
         
         .nav-link:hover {
             background: rgba(255, 255, 255, 0.1);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 85, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 98, 255, 0.2);
         }
         
         .nav-link.active {
-            background: rgba(0, 85, 255, 0.15);
-            box-shadow: 0 5px 15px rgba(0, 85, 255, 0.3);
-            border: 1px solid rgba(0, 198, 255, 0.3);
+            background: rgba(0, 98, 255, 0.15);
+            box-shadow: 0 5px 15px rgba(0, 98, 255, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.3);
         }
         
         .nav-link-icon {
             margin-right: 10px;
-            font-size: 16px;
             transition: transform 0.3s ease;
             color: var(--accent);
         }
         
         .nav-link:hover .nav-link-icon {
-            transform: translateY(-2px) scale(1.1);
+            transform: scale(1.2);
         }
         
-        /* Мобільне меню */
+        /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
-            background: none;
-            border: none;
+            background: var(--glass);
+            border: 1px solid var(--border);
             color: var(--text);
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
-            padding: 5px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.3s;
         }
         
-        /* Мобільна навігація */
+        .mobile-menu-btn:hover {
+            background: rgba(0, 98, 255, 0.15);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+        
+        /* Improved Mobile Navigation */
         .mobile-nav {
             position: fixed;
             top: 0;
             right: -100%;
             width: 85%;
             height: 100%;
-            background-color: rgba(17, 17, 17, 0.95);
+            background: var(--dark-lighter);
             z-index: 999;
-            transition: right 0.3s ease;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -249,7 +279,8 @@
             padding: 30px 20px;
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border-left: 1px solid rgba(0, 85, 255, 0.2);
+            border-left: 1px solid rgba(0, 98, 255, 0.2);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
         }
         
         .mobile-nav.active {
@@ -262,63 +293,69 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            width: 90%;
+            gap: 15px;
+            width: 100%;
         }
         
         .mobile-nav-link {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
             font-size: 18px;
             color: var(--text);
             text-decoration: none;
-            padding: 12px 20px;
+            padding: 15px 20px;
             position: relative;
             transition: all 0.3s;
-            border-radius: 8px;
+            border-radius: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             display: flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--glass);
+            backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border);
         }
         
-        .mobile-nav-link::after {
+        .mobile-nav-link::before {
             content: '';
             position: absolute;
-            bottom: 0;
             left: 0;
-            width: 4px;
+            top: 0;
             height: 100%;
+            width: 4px;
             background: var(--gradient);
             transition: all 0.3s ease;
             opacity: 0;
-            border-radius: 8px 0 0 8px;
+            border-radius: 4px 0 0 4px;
         }
         
-        .mobile-nav-link:hover::after,
-        .mobile-nav-link:active::after {
+        .mobile-nav-link:hover::before,
+        .mobile-nav-link.active::before {
             opacity: 1;
         }
 
         .mobile-nav-link:hover {
             background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 85, 255, 0.2);
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 98, 255, 0.2);
         }
 
         .mobile-nav-link.active {
-            background: rgba(0, 86, 255, 0.15);
-            box-shadow: 0 5px 15px rgba(0, 85, 255, 0.03);
-            border: 1px solid rgba(0, 198, 255, 0.3);
+            background: rgba(0, 98, 255, 0.15);
+            box-shadow: 0 5px 15px rgba(0, 98, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
         }
 
         .mobile-nav-icon {
             margin-right: 15px;
             font-size: 18px;
             color: var(--accent);
+            transition: transform 0.3s;
+        }
+        
+        .mobile-nav-link:hover .mobile-nav-icon {
+            transform: scale(1.2);
         }
         
         .close-menu {
@@ -326,7 +363,7 @@
             top: 20px;
             right: 20px;
             background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border);
             color: var(--text);
             font-size: 18px;
             cursor: pointer;
@@ -337,29 +374,29 @@
         }
 
         .close-menu:hover {
-            background: rgba(0, 85 ,255, 0.2);
-            border-color: rgba(0, 198, 255, 0.3);
+            background: rgba(0, 98, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.3);
+            transform: rotate(90deg);
         }
         
-        /* Оновлений основний контент */
+        /* Enhanced Main Content */
         .main-content {
             display: flex;
             align-items: center;
-            margin-top: 50px;
+            margin: 50px 0;
             min-height: 60vh;
             position: relative;
-            flex-wrap: wrap;
+            gap: 40px;
         }
         
         .welcome-text {
             flex: 1;
-            padding-right: 30px;
             opacity: 0;
             transform: translateX(-30px);
-            animation: slideRight 1s ease-out 1s forwards;
+            animation: slideRight 1s ease-out 0.8s forwards;
             position: relative;
             z-index: 2;
-            min-width: 250px;
+            min-width: 300px;
         }
         
         @keyframes slideRight {
@@ -374,43 +411,53 @@
         }
         
         .welcome-text h1 {
-            font-size: 48px;
+            font-size: 52px;
             margin-bottom: 20px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
             position: relative;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             display: inline-block;
-            text-shadow: 0 0 10px rgba(0, 198, 255, 0.3);
+        }
+        
+        .welcome-text h1::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 80px;
+            height: 5px;
+            background: var(--gradient);
+            border-radius: 5px;
         }
         
         .welcome-text p {
-            font-size: 24px;
-            line-height: 1.5;
+            font-size: 20px;
+            line-height: 1.6;
             font-weight: 400;
-            position: relative;
             color: var(--text-secondary);
+            margin-bottom: 30px;
         }
         
-        /* НОВИЙ ЕЛЕМЕНТ ЗАМІСТЬ СФЕРИ - ІНТЕРАКТИВНА 3D КАРТА */
+        /* Enhanced Card Component */
         .visual-container {
             flex: 1;
-            text-align: center;
             position: relative;
             opacity: 0;
             transform: translateX(30px);
-            animation: slideLeft 1s ease-out 1.5s forwards;
-            height: 400px;
+            animation: slideLeft 1s ease-out 1.2s forwards;
+            height: 450px;
             display: flex;
             align-items: center;
             justify-content: center;
             transform-style: preserve-3d;
             perspective: 1000px;
-            min-width: 250px;
+            min-width: 300px;
         }
         
         @keyframes slideLeft {
@@ -427,30 +474,30 @@
         .card-container {
             position: relative;
             width: 350px;
-            height: 400px;
+            height: 450px;
             transform-style: preserve-3d;
             perspective: 1500px;
-            transition: transform 0.6s ease;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .card {
             position: absolute;
             width: 100%;
             height: 100%;
-            background: rgba(17, 17, 17, 0.7);
+            background: var(--glass);
             border-radius: 20px;
             transform-style: preserve-3d;
             transform: translateZ(0);
-            transition: transform 0.6s ease;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 85, 255, 0.2);
+            border: 1px solid var(--border);
         }
         
         .card:hover {
-            transform: translateZ(20px);
+            transform: translateZ(30px);
         }
         
         .card-container:hover {
@@ -462,101 +509,96 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 150%;
             height: 100%;
             background: linear-gradient(125deg, 
                 transparent 0%, 
-                rgba(0, 85, 255, 0.2) 40%,
-                rgba(0, 198, 255, 0.4) 60%,
+                rgba(0, 98, 255, 0.1) 40%,
+                rgba(0, 212, 255, 0.3) 60%,
                 transparent 100%);
-            transform: translateY(-100%);
-            animation: shine 5s infinite;
-        }
-        
-        @keyframes shine {
-            0% {
-                transform: translateY(-100%) rotate(10deg);
-            }
-            50% {
-                transform: translateY(100%) rotate(10deg);
-            }
-            100% {
-                transform: translateY(100%) rotate(10deg);
-            }
+            transform: translateY(-100%) rotate(10deg);
+            animation: shine 8s infinite;
         }
         
         .card-content {
             position: relative;
             z-index: 1;
-            padding: 30px;
+            padding: 35px;
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-sizing: border-box;
         }
         
         .card-title {
-            font-family: 'Audiowide', cursive;
+            font-family: 'Orbitron', sans-serif;
             font-size: 28px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: var(--accent);
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
         
         .card-description {
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--text-secondary);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         
         .card-elements {
             position: absolute;
             inset: 0;
             pointer-events: none;
+            overflow: hidden;
+            border-radius: 20px;
         }
         
         .element {
             position: absolute;
             background: var(--gradient);
             border-radius: 50%;
-            filter: blur(15px);
-            opacity: 0.6;
+            filter: blur(20px);
+            opacity: 0.5;
+            z-index: -1;
         }
         
         .element-1 {
             top: 10%;
             left: 10%;
-            width: 60px;
-            height: 60px;
-            animation: float 6s ease-in-out infinite;
+            width: 100px;
+            height: 100px;
+            animation: float 8s ease-in-out infinite;
         }
         
         .element-2 {
             top: 60%;
             right: 15%;
-            width: 40px;
-            height: 40px;
-            animation: float 8s ease-in-out infinite 1s;
+            width: 80px;
+            height: 80px;
+            animation: float 10s ease-in-out infinite 1s;
         }
         
         .element-3 {
             bottom: 10%;
             left: 20%;
-            width: 30px;
-            height: 30px;
-            animation: float 5s ease-in-out infinite 0.5s;
+            width: 60px;
+            height: 60px;
+            animation: float 7s ease-in-out infinite 0.5s;
         }
         
         @keyframes float {
             0% {
                 transform: translateY(0) translateX(0);
+                opacity: 0.5;
             }
             50% {
-                transform: translateY(-20px) translateX(10px);
+                transform: translateY(-30px) translateX(15px);
+                opacity: 0.7;
             }
             100% {
                 transform: translateY(0) translateX(0);
+                opacity: 0.5;
             }
         }
         
@@ -564,36 +606,41 @@
             position: absolute;
             inset: 0;
             background-image: 
-                linear-gradient(to right, rgba(0, 85, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 85, 255, 0.1) 1px, transparent 1px);
+                linear-gradient(to right, rgba(0, 98, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 98, 255, 0.1) 1px, transparent 1px);
             background-size: 20px 20px;
-            mask-image: radial-gradient(circle, white 30%, transparent 70%);
+            mask-image: radial-gradient(circle, white 30%, transparent 80%);
             pointer-events: none;
+            opacity: 0.5;
         }
         
-        .card-button {
+        /* Enhanced Buttons */
+        .card-button, .telegram-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             background: var(--primary);
             color: white;
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
             font-size: 16px;
             text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 85, 255, 0.3);
+            padding: 14px 28px;
+            border-radius: 10px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 5px 15px rgba(0, 98, 255, 0.3), 
+                        0 0 0 2px rgba(0, 98, 255, 0.3) inset;
             border: none;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
-        .card-button::before {
+        .card-button::before, .telegram-button::before {
             content: '';
             position: absolute;
             top: 0;
@@ -601,74 +648,38 @@
             width: 100%;
             height: 100%;
             background: var(--accent);
-            transition: all 0.4s;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: -1;
         }
         
-        .card-button:hover::before {
+        .card-button:hover::before, .telegram-button:hover::before {
             left: 0;
         }
         
-        .card-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 198, 255, 0.4);
+        .card-button:hover, .telegram-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4),
+                        0 0 0 2px rgba(0, 212, 255, 0.4) inset;
         }
         
-        /* Кнопка Telegram */
+        .card-button:active, .telegram-button:active {
+            transform: translateY(-2px);
+        }
+        
         .telegram-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
-            background: var(--primary);
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 700;
-            font-size: 16px;
-            text-decoration: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            position: relative;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 85, 255, 0.3);
-            border: none;
-            cursor: pointer;
-            z-index: 1;
-            overflow: hidden;
+            margin-top: 10px;
         }
         
-        .telegram-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--accent);
-            transition: all 0.4s;
-            z-index: -1;
+        .button-icon {
+            font-size: 18px;
+            transition: transform 0.3s;
         }
         
-        .telegram-button:hover::before {
-            left: 0;
+        .card-button:hover .button-icon, .telegram-button:hover .button-icon {
+            transform: translateX(5px);
         }
         
-        .telegram-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 198, 255, 0.4);
-        }
-        
-        .telegram-button:active {
-            transform: translateY(-1px);
-        }
-        
-        .telegram-icon {
-            font-size: 20px;
-            margin-right: 5px;
-        }
-
-        /* Затемнення фону при відкритому мобільному меню */
+        /* Overlay for Mobile Menu */
         .overlay {
             display: none;
             position: fixed;
@@ -680,87 +691,112 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .overlay.active {
             display: block;
+            opacity: 1;
         }
         
-        /* Оновлений футер з копірайтом */
+        /* Enhanced Footer */
         footer {
             margin-top: 70px;
-            padding: 25px 0;
+            padding: 30px 0;
             text-align: center;
             font-size: 14px;
             color: var(--text-secondary);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            background: linear-gradient(to bottom, transparent, rgba(0, 85, 255, 0.05));
+            border-top: 1px solid var(--border);
+            background: linear-gradient(to bottom, transparent, rgba(0, 98, 255, 0.05));
+            position: relative;
         }
         
-        /* Адаптивність */
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 992px) {
             .welcome-text h1 {
-                font-size: 40px;
+                font-size: 42px;
             }
             
             .welcome-text p {
-                font-size: 20px;
+                font-size: 18px;
             }
             
             .card-container {
-                width: 300px;
-                height: 350px;
+                width: 320px;
+                height: 400px;
+            }
+            
+            .main-content {
+                gap: 30px;
             }
         }
         
         @media (max-width: 768px) {
+            header {
+                padding: 20px 0;
+                margin-bottom: 30px;
+            }
+            
             .main-content {
                 flex-direction: column;
-                margin-top: 30px;
-                text-align: center; /* Центруємо текст на мобільних */
+                margin: 30px 0;
+                gap: 50px;
             }
             
             .welcome-text, .visual-container {
                 width: 100%;
-                padding: 0;
-                margin-bottom: 40px;
                 display: flex;
                 flex-direction: column;
-                align-items: center; /* Вирівнюємо елементи по центру */
-            }
-            
-            .welcome-text {
-                margin-bottom: 40px;
-                padding-right: 0;
-            }
-
-            .welcome-text h1, .welcome-text p {
+                align-items: center;
                 text-align: center;
-                max-width: 100%;
             }
             
-            .visual-container {
-                height: 350px;
-                display: flex;
-                justify-content: center;
+            .welcome-text h1 {
+                font-size: 36px;
+            }
+            
+            .welcome-text h1::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .welcome-text p {
+                font-size: 16px;
+                max-width: 500px;
             }
             
             .site-name {
-                font-size: 20px;
+                font-size: 18px;
             }
             
             .nav-links {
                 display: none;
             }
             
-            /* Показуємо кнопку мобільного меню на мобільних */
             .mobile-menu-btn {
                 display: block;
             }
             
             .card-container {
-                width: 250px;
-                height: 320px;
+                width: 280px;
+                height: 380px;
+            }
+            
+            .card-content {
+                padding: 25px;
             }
             
             .card-title {
@@ -771,16 +807,18 @@
                 font-size: 14px;
             }
 
-            /*Центруємо кнопку телеграм */
             .telegram-button {
-                margin: 30px auto 0;
-                display: flex;
+                margin: 20px auto 0;
+            }
+            
+            .visual-container {
+                height: 380px;
             }
         }
             
         @media (max-width: 480px) {
             .container {
-                padding: 15px;
+                padding: 0 15px;
             }
             
             .welcome-text h1 {
@@ -788,32 +826,31 @@
             }
             
             .welcome-text p {
-                font-size: 18px;
+                font-size: 15px;
             }
             
             .logo {
-                width: 35px;
-                height: 35px;
+                width: 36px;
+                height: 36px;
                 font-size: 14px;
             }
             
             .site-name {
-                font-size: 18px;
+                font-size: 16px;
             }
             
-            .telegram-button {
-                padding: 10px 20px;
-                font-size: 16px;
-                margin: 20px auto 0;
+            .card-button, .telegram-button {
+                padding: 12px 20px;
+                font-size: 14px;
             }
             
             .visual-container {
-                height: 300px;
+                height: 340px;
             }
             
             .card-container {
-                width: 230px;
-                height: 300px;
+                width: 250px;
+                height: 340px;
             }
             
             .card-title {
@@ -822,15 +859,24 @@
             
             .card-description {
                 font-size: 13px;
+                margin-bottom: 20px;
+            }
+            
+            .mobile-nav {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    
     <div class="container">
         <header>
             <div class="logo-wrap">
-                <img src="logo.png" alt="Nomire External Logo" class="logo">
+                <div class="logo">NE</div>
                 <div class="site-name">NOMIRE EXTERNAL</div>
             </div>
             
@@ -876,175 +922,162 @@
                 </ul>
             </nav>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <button class="mobile-menu-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
         </header>
-        
-        <!-- Затемнення фону при відкритому меню -->
-        <div class="overlay" id="overlay"></div>
-
-        <!-- Мобільне меню -->
-        <div class="mobile-nav" id="mobileNav">
-            <button class="close-menu" id="closeMenu">✕</button>
+                
+        <div class="mobile-nav">
+            <button class="close-menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
             <ul class="mobile-nav-links">
                 <li>
                     <a href="Index.html" class="mobile-nav-link active">
-                        <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                             <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                            </svg>
-                            Головна
-                        </a>
-                    </li>
-                    <li>
-                        <a href="meet.html" class="mobile-nav-link">
-                            <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg> 
-                            Міт
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="mobile-nav-link">
-                            <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                            Ігри
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="mobile-nav-link">
-                            <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                           </svg>
-                            Налаштування
-                        </a>
-                    </li>
-                </ul>
-            </div>
-                                
-        <div class="main-content">
-            <div class="welcome-text">
-                <h1>Ласкаво просимо!</h1>
-                <p>Раді тебе бачити на нашому сайті. Надіємось, що ти залишишся з нами надовго!</p>
-                
-                <a href="https://t.me/nomireexternal" class="telegram-button">
-                    <svg class="telegram-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 2L11 13"></path>
-                        <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
-                    </svg>
-                    Telegram
-                </a>
-            </div>
-
-            <div class="visual-container">
-    <div class="card-container">
-        <div class="card">
-            <div class="card-elements">
-                <div class="element element-1"></div>
-                <div class="element element-2"></div>
-                <div class="element element-3"></div>
-                <div class="card-grid"></div>
-            </div>
-            <div class="card-content">
-                <div>
-                    <h3 class="card-title">Nomire External</h3>
-                    <p class="card-description">Наш сайт пропонує зручний доступ до всіх необхідних інструментів та інформації. Приєднуйтесь до нашої спільноти вже сьогодні!</p>
-                </div>
-                <a href="meet.html" class="card-button">
-                    Дізнатися більше
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14"></path>
-                        <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                </a>
-            </div>
+                        </svg>
+                        Головна
+                    </a>
+                </li>
+                <li>
+                    <a href="meet.html" class="mobile-nav-link">
+                        <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        Міт
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="mobile-nav-link">
+                        <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        Ігри
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="mobile-nav-link">
+                        <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                        Налаштування
+                    </a>
+                </li>
+            </ul>
         </div>
-    </div>
-</div>
-</div>
+        
+        <div class="overlay"></div>
+        
+        <main>
+            <div class="main-content">
+                <div class="welcome-text">
+                    <h1>Відкривайте нові горизонти</h1>
+                    <p>Nomire External - це ваш шлях до кращого геймплею та нових можливостей. Приєднуйтесь до нашої спільноти, щоб отримати доступ до найкращого програмного забезпечення та ексклюзивних функцій.</p>
+                    <a href="https://t.me/nomire_external" class="telegram-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="button-icon">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        Приєднатися в Telegram
+                    </a>
+                </div>
+                
+                <div class="visual-container">
+                    <div class="card-container">
+                        <div class="card">
+                            <div class="card-elements">
+                                <div class="element element-1"></div>
+                                <div class="element element-2"></div>
+                                <div class="element element-3"></div>
+                                <div class="card-grid"></div>
+                            </div>
+                            <div class="card-content">
+                                <div>
+                                    <h2 class="card-title">Nomire External</h2>
+                                    <p class="card-description">Наше програмне забезпечення надає вам унікальні можливості для покращення геймплею та досягнення нових висот. Спробуйте зараз і відчуйте різницю.</p>
+                                </div>
+                                <a href="#" class="card-button">
+                                    Дізнатися більше
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="button-icon">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
         
         <footer>
-            &copy; 2025 Nomire External. Усі права захищено.
+            <p>&copy; 2025 Nomire External. Усі права захищені.</p>
         </footer>
     </div>
-
+    
     <script>
-        // Додай цей код після існуючого JavaScript
-        // Визначаємо поточну сторінку і додаємо клас active для мобільного меню
+        // Mobile Menu Functionality
         document.addEventListener('DOMContentLoaded', function() {
-            // Обработчики для мобильного меню
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileNav = document.getElementById('mobileNav');
-            const overlay = document.getElementById('overlay');
-            const closeMenu = document.getElementById('closeMenu');
-            // Открыть меню
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const closeMenuBtn = document.querySelector('.close-menu');
+            const mobileNav = document.querySelector('.mobile-nav');
+            const overlay = document.querySelector('.overlay');
+            
             mobileMenuBtn.addEventListener('click', function() {
                 mobileNav.classList.add('active');
                 overlay.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Предотвращаем прокрутку страницы
+                document.body.style.overflow = 'hidden';
             });
-
-            // Закрыть меню (кнопка закрытия)
-            closeMenu.addEventListener('click', function() {
+            
+            closeMenuBtn.addEventListener('click', function() {
                 mobileNav.classList.remove('active');
                 overlay.classList.remove('active');
-                document.body.style.overflow = ''; // Возвращаем прокрутку
+                document.body.style.overflow = '';
             });
-
-            // Закрыть меню при клике на overlay
+            
             overlay.addEventListener('click', function() {
                 mobileNav.classList.remove('active');
                 overlay.classList.remove('active');
                 document.body.style.overflow = '';
             });
-
-            // Ваш существующий код
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             
-            // Мобільне меню
-            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-            mobileLinks.forEach(link => {
-                const linkHref = link.getAttribute('href');
-                if (linkHref === currentPage) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-        });
-
-        // Также добавляем активный класс для десктопного меню  
-        const desktopLinks = document.querySelectorAll('.nav-link');
-        desktopLinks.forEach(link => {
-            const linkHref = link.getAttribute('href');
-            if (linkHref === currentPage) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
+            // Card Animation
+            const card = document.querySelector('.card-container');
+            
+            if (card) {
+                document.addEventListener('mousemove', function(e) {
+                    if (window.innerWidth > 768) {
+                        const { clientX, clientY } = e;
+                        const rect = card.getBoundingClientRect();
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+                        
+                        const rotateY = (clientX - centerX) / 20;
+                        const rotateX = (centerY - clientY) / 20;
+                        
+                        card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+                    }
+                });
+                
+                document.addEventListener('mouseleave', function() {
+                    if (window.innerWidth > 768) {
+                        card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                    }
+                });
             }
         });
-
-        // Інтерактивність для карточки
-        const cardContainer = document.querySelector('.card-container');
-        
-        if (cardContainer) {
-            document.addEventListener('mousemove', function(e) {
-                if (window.innerWidth > 768) { // Тільки для десктопів
-                    const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-                    const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-                    cardContainer.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-                }
-            });
-            
-            // Повертаємо в початкове положення при виході миші
-            document.addEventListener('mouseleave', function() {
-                cardContainer.style.transform = 'rotateY(0deg) rotateX(0deg)';
-            });
-        }
     </script>
 </body>
-</html> 
+</html>
