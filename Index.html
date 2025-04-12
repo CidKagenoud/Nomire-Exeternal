@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nomire External • Головна</title>
-    <!-- Додаємо favicon для відображення логотипу у вкладці браузера -->
     <link rel="icon" href="logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +17,8 @@
             --accent-dark: #00A8E0;
             --text: #FFFFFF;
             --text-secondary: #CCCCCC;
-            --dark: #111111;
-            --dark-light: #222222;
+            --dark: #090918;  /* Трохи темніший фон з синім відтінком */
+            --dark-light: #151525;
             --gradient: linear-gradient(135deg, var(--primary), var(--accent));
         }
         
@@ -33,6 +32,94 @@
             animation: fadeIn 1.5s ease-in-out forwards;
             overflow-x: hidden;
             position: relative;
+        }
+        
+        /* Анімований фон */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .animated-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            background: var(--gradient);
+            animation: float-blob 20s infinite ease-in-out;
+        }
+        
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            left: -150px;
+            top: -100px;
+            background: linear-gradient(135deg, #0044FF, #00A2FF);
+            animation-delay: 0s;
+        }
+        
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            right: -200px;
+            bottom: -200px;
+            background: linear-gradient(135deg, #3B00FF, #00BFFF);
+            animation-delay: -5s;
+            animation-duration: 25s;
+        }
+        
+        .blob-3 {
+            width: 350px;
+            height: 350px;
+            left: 40%;
+            top: 60%;
+            background: linear-gradient(135deg, #0077FF, #00EEFF);
+            animation-delay: -10s;
+            animation-duration: 18s;
+            opacity: 0.1;
+        }
+        
+        .blob-4 {
+            width: 250px;
+            height: 250px;
+            left: 70%;
+            top: 15%;
+            background: linear-gradient(135deg, #0055FF, #6B00FF);
+            animation-delay: -7s;
+            animation-duration: 22s;
+            opacity: 0.12;
+        }
+        
+        @keyframes float-blob {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            33% {
+                transform: translate(50px, 80px) scale(1.1) rotate(120deg);
+            }
+            66% {
+                transform: translate(-30px, 50px) scale(0.9) rotate(240deg);
+            }
+            100% {
+                transform: translate(0, 0) scale(1) rotate(360deg);
+            }
+        }
+        
+        /* Додаємо накладання темного градієнта на весь контент для кращої читабельності */
+        .content-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(9, 9, 24, 0.5) 0%, rgba(9, 9, 24, 0.85) 70%);
+            z-index: -1;
+            pointer-events: none;
         }
         
         @keyframes fadeIn {
@@ -367,7 +454,7 @@
             color: var(--text-secondary);
         }
         
-        /* НОВИЙ ЕЛЕМЕНТ ЗАМІСТЬ СФЕРИ - ІНТЕРАКТИВНА 3D КАРТА */
+        /* Контейнер з візуальним елементом */
         .visual-container {
             flex: 1;
             text-align: center;
@@ -666,6 +753,8 @@
             color: var(--text-secondary);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             background: linear-gradient(to bottom, transparent, rgba(0, 85, 255, 0.05));
+            position: relative;
+            z-index: 2;
         }
         
         /* Адаптивність */
@@ -794,10 +883,25 @@
             .card-description {
                 font-size: 13px;
             }
+            
+            /* Адаптація анімованих блобів для мобільних пристроїв */
+            .blob-1, .blob-2 {
+                width: 250px;
+                height: 250px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Додаємо анімований фон -->
+    <div class="animated-background">
+        <div class="animated-blob blob-1"></div>
+        <div class="animated-blob blob-2"></div>
+        <div class="animated-blob blob-3"></div>
+        <div class="animated-blob blob-4"></div>
+        <div class="content-overlay"></div>
+    </div>
+    
     <div class="container">
         <header>
             <div class="logo-wrap">
