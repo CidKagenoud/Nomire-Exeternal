@@ -3,1123 +3,566 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nomire External • Головна</title>
-    <link rel="icon" href="logo.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Rajdhani:wght@500;700&family=Audiowide&family=Chakra+Petch:wght@700&display=swap" rel="stylesheet">
+    <title>NexusFusion</title>
     <style>
-        :root {
-            --primary: #0055FF;
-            --primary-light: #3378FF;
-            --primary-dark: #0044CC;
-            --accent: #00C6FF;
-            --accent-dark: #00A8E0;
-            --text: #FFFFFF;
-            --text-secondary: #CCCCCC;
-            --dark: #090918;  /* Трохи темніший фон з синім відтінком */
-            --dark-light: #151525;
-            --gradient: linear-gradient(135deg, var(--primary), var(--accent));
-        }
-        
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--dark);
-            color: var(--text);
+        * {
             margin: 0;
             padding: 0;
-            opacity: 0;
-            animation: fadeIn 1.5s ease-in-out forwards;
-            overflow-x: hidden;
-            position: relative;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
-        /* Анімований фон */
-        .animated-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+
+        body {
+            background: linear-gradient(125deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            color: #fff;
+            min-height: 100vh;
+            animation: gradientBG 15s ease infinite;
         }
-        
-        .animated-blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.15;
-            background: var(--gradient);
-            animation: float-blob 20s infinite ease-in-out;
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
         }
-        
-        .blob-1 {
-            width: 500px;
-            height: 500px;
-            left: -150px;
-            top: -100px;
-            background: linear-gradient(135deg, #0044FF, #00A2FF);
-            animation-delay: 0s;
-        }
-        
-        .blob-2 {
-            width: 600px;
-            height: 600px;
-            right: -200px;
-            bottom: -200px;
-            background: linear-gradient(135deg, #3B00FF, #00BFFF);
-            animation-delay: -5s;
-            animation-duration: 25s;
-        }
-        
-        .blob-3 {
-            width: 350px;
-            height: 350px;
-            left: 40%;
-            top: 60%;
-            background: linear-gradient(135deg, #0077FF, #00EEFF);
-            animation-delay: -10s;
-            animation-duration: 18s;
-            opacity: 0.1;
-        }
-        
-        .blob-4 {
-            width: 250px;
-            height: 250px;
-            left: 70%;
-            top: 15%;
-            background: linear-gradient(135deg, #0055FF, #6B00FF);
-            animation-delay: -7s;
-            animation-duration: 22s;
-            opacity: 0.12;
-        }
-        
-        @keyframes float-blob {
-            0% {
-                transform: translate(0, 0) scale(1) rotate(0deg);
-            }
-            33% {
-                transform: translate(50px, 80px) scale(1.1) rotate(120deg);
-            }
-            66% {
-                transform: translate(-30px, 50px) scale(0.9) rotate(240deg);
-            }
-            100% {
-                transform: translate(0, 0) scale(1) rotate(360deg);
-            }
-        }
-        
-        /* Додаємо накладання темного градієнта на весь контент для кращої читабельності */
-        .content-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(9, 9, 24, 0.5) 0%, rgba(9, 9, 24, 0.85) 70%);
-            z-index: -1;
-            pointer-events: none;
-        }
-        
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        
+
         .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 0 5%;
             position: relative;
             z-index: 1;
-            box-sizing: border-box;
         }
-        
-        /* Оновлений хедер з новим стилем */
-        header {
+
+        .header {
             display: flex;
-            align-items: center;
-            padding: 15px 0;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: slideDown 1s ease-out 0.5s forwards;
-            position: relative;
-            flex-wrap: wrap;
             justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
         }
-        
-        @keyframes slideDown {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .logo-wrap {
+
+        .logo {
             display: flex;
             align-items: center;
-            user-select: text;
-            cursor: default;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(110, 223, 252, 0.7);
         }
-        
-        .logo {
-            background-color: var(--primary);
-            color: white;
+
+        .logo-icon {
             width: 40px;
             height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            margin-right: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 10px;
-            font-weight: bold;
-            margin-right: 15px;
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 18px;
-            letter-spacing: -1px;
-            user-select: text;
-            box-shadow: 0 0 15px rgba(0, 85, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
-        
-        .site-name {
-            font-size: 24px;
-            font-family: 'Audiowide', cursive;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--text);
-            text-transform: uppercase;
-            user-select: text;
-            cursor: default;
-            background: var(--gradient);
+
+        .logo-icon span {
+            font-size: 22px;
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5);
             -webkit-background-clip: text;
             background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px rgba(0, 198, 255, 0.3);
+            -webkit-text-fill-color: transparent;
         }
-        
-        /* ПОВНІСТЮ ОНОВЛЕНЕ МЕНЮ НАВІГАЦІЇ ДЛЯ ПК */
-        nav {
-            perspective: 1000px;
-        }
-        
-        .nav-links {
+
+        /* Меню навігації */
+        .nav-menu {
             display: flex;
-            list-style: none;
-            padding: 0;
-            margin: 0;
             gap: 10px;
-        }
-        
-        .nav-link {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: 14px;
-            color: var(--text);
-            text-decoration: none;
-            padding: 10px 20px;
-            position: relative;
-            transition: all 0.3s ease;
-            border-top-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            border-radius: 30px 0 30px 0;
+            padding: 10px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
         }
-        
-        .nav-link::before {
+
+        .nav-item {
+            padding: 12px 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px 0 20px 0;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-item::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 4px;
+            left: -100%;
+            width: 100%;
             height: 100%;
-            background: var(--gradient);
-            transition: all 0.3s ease;
-            opacity: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
         }
-        
-        .nav-link:hover::before,
-        .nav-link.active::before {
-            opacity: 1;
-        }
-        
-        .nav-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 85, 255, 0.2);
-        }
-        
-        .nav-link.active {
-            background: rgba(0, 85, 255, 0.15);
-            box-shadow: 0 5px 15px rgba(0, 85, 255, 0.3);
-            border: 1px solid rgba(0, 198, 255, 0.3);
-        }
-        
-        .nav-link-icon {
-            margin-right: 10px;
-            font-size: 16px;
-            transition: transform 0.3s ease;
-            color: var(--accent);
-        }
-        
-        .nav-link:hover .nav-link-icon {
-            transform: translateY(-2px) scale(1.1);
+
+        .nav-item:hover::before {
+            left: 100%;
         }
         
         /* Мобільне меню */
         .mobile-menu-btn {
             display: none;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 24px;
-            cursor: pointer;
-            padding: 5px;
-        }
-        
-        /* Мобільна навігація */
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 85%;
-            height: 100%;
-            background-color: rgba(17, 17, 17, 0.95);
-            z-index: 999;
-            transition: right 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 30px 20px;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-left: 1px solid rgba(0, 85, 255, 0.2);
-        }
-        
-        .mobile-nav.active {
-            right: 0;
-        }
-        
-        .mobile-nav-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 90%;
-        }
-        
-        .mobile-nav-link {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--text);
-            text-decoration: none;
-            padding: 12px 20px;
-            position: relative;
-            transition: all 0.3s;
-            border-top-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.05);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .mobile-nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--gradient);
-            transition: all 0.3s ease;
-            opacity: 0;
-            border-radius: 8px 0 0 8px;
-        }
-        
-        .mobile-nav-link:hover::after,
-        .mobile-nav-link:active::after {
-            opacity: 1;
-        }
-
-        .mobile-nav-link:hover {
             background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 85, 255, 0.2);
-        }
-
-        .mobile-nav-link.active {
-            background: rgba(0, 86, 255, 0.15);
-            box-shadow: 0 5px 15px rgba(0, 85, 255, 0.03);
-            border: 1px solid rgba(0, 198, 255, 0.3);
-        }
-
-        .mobile-nav-icon {
-            margin-right: 15px;
-            font-size: 18px;
-            color: var(--accent);
-        }
-        
-        .close-menu {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text);
-            font-size: 18px;
+            backdrop-filter: blur(10px);
+            border: none;
+            color: white;
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
             cursor: pointer;
-            padding: 8px 12px;
-            z-index: 1000;
-            border-radius: 8px;
-            transition: all 0.3s;
+            z-index: 100;
         }
 
-        .close-menu:hover {
-            background: rgba(0, 85 ,255, 0.2);
-            border-color: rgba(0, 198, 255, 0.3);
-        }
-        
-        /* Оновлений основний контент */
-        .main-content {
+        .content {
             display: flex;
-            align-items: center;
-            margin-top: 50px;
-            min-height: 60vh;
-            position: relative;
-            flex-wrap: wrap;
-        }
-        
-        .welcome-text {
             flex: 1;
-            padding-right: 30px;
-            opacity: 0;
-            transform: translateX(-30px);
-            animation: slideRight 1s ease-out 1s forwards;
-            position: relative;
-            z-index: 2;
-            min-width: 250px;
+            align-items: center;
+            justify-content: space-between;
         }
-        
-        @keyframes slideRight {
-            0% {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 5%;
         }
-        
-        .welcome-text h1 {
-            font-size: 48px;
+
+        .title {
+            font-size: 4.5rem;
+            font-weight: 800;
             margin-bottom: 20px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            position: relative;
-            font-family: 'Roboto', sans-serif;
-            background: var(--gradient);
+            line-height: 1.1;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
             -webkit-background-clip: text;
             background-clip: text;
-            color: transparent;
+            -webkit-text-fill-color: transparent;
+            position: relative;
             display: inline-block;
-            text-shadow: 0 0 10px rgba(0, 198, 255, 0.3);
         }
-        
-        .welcome-text p {
-            font-size: 24px;
-            line-height: 1.5;
-            font-weight: 400;
-            position: relative;
-            color: var(--text-secondary);
-        }
-        
-        /* Контейнер з візуальним елементом */
-        .visual-container {
-            flex: 1;
-            text-align: center;
-            position: relative;
-            opacity: 0;
-            transform: translateX(30px);
-            animation: slideLeft 1s ease-out 1.5s forwards;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            min-width: 250px;
-        }
-        
-        @keyframes slideLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .card-container {
-            position: relative;
-            width: 350px;
-            height: 400px;
-            transform-style: preserve-3d;
-            perspective: 1500px;
-            transition: transform 0.6s ease;
-        }
-        
-        .card {
+
+        .title::after {
+            content: attr(data-text);
             position: absolute;
+            left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(17, 17, 17, 0.7);
-            border-radius: 20px;
-            transform-style: preserve-3d;
-            transform: translateZ(0);
-            transition: transform 0.6s ease;
+            z-index: -1;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: blur(15px);
+            opacity: 0.5;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 30px 0 30px 0;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            outline: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 85, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
-        .card:hover {
-            transform: translateZ(20px);
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
-        
-        .card-container:hover {
-            transform: rotateX(5deg) rotateY(10deg);
-        }
-        
-        .card::before {
+
+        .btn::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(125deg, 
-                transparent 0%, 
-                rgba(0, 85, 255, 0.2) 40%,
-                rgba(0, 198, 255, 0.4) 60%,
-                transparent 100%);
-            transform: translateY(-100%);
-            animation: shine 5s infinite;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
         }
-        
-        @keyframes shine {
-            0% {
-                transform: translateY(-100%) rotate(10deg);
-            }
-            50% {
-                transform: translateY(100%) rotate(10deg);
-            }
-            100% {
-                transform: translateY(100%) rotate(10deg);
-            }
+
+        .btn:hover::before {
+            left: 100%;
         }
-        
-        .card-content {
+
+        .hero-visual {
+            flex: 1;
             position: relative;
-            z-index: 1;
-            padding: 30px;
             height: 100%;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-sizing: border-box;
+            justify-content: center;
+            align-items: center;
         }
-        
-        .card-title {
-            font-family: 'Audiowide', cursive;
-            font-size: 28px;
-            margin-bottom: 15px;
-            color: var(--accent);
+
+        .orb {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #74ebd5, #6a55fa, #0b084d);
+            box-shadow: 0 0 60px rgba(110, 223, 252, 0.6);
+            position: relative;
+            overflow: hidden;
         }
-        
-        .card-description {
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-        
-        .card-elements {
+
+        .orb::before {
+            content: '';
             position: absolute;
-            inset: 0;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
             pointer-events: none;
         }
-        
-        .element {
+
+        .floating-particles {
             position: absolute;
-            background: var(--gradient);
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
             border-radius: 50%;
-            filter: blur(15px);
-            opacity: 0.6;
+            opacity: 0.7;
+            animation: float 8s infinite linear;
         }
-        
-        .element-1 {
-            top: 10%;
-            left: 10%;
-            width: 60px;
-            height: 60px;
-            animation: float 6s ease-in-out infinite;
+
+        /* Іконка Телеграма */
+        .telegram-icon {
+            display: inline-block;
+            margin-right: 8px;
+            transform: rotate(-45deg);
+            font-size: 1.2em;
         }
-        
-        .element-2 {
-            top: 60%;
-            right: 15%;
-            width: 40px;
-            height: 40px;
-            animation: float 8s ease-in-out infinite 1s;
+
+        /* Копірайт */
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: auto;
         }
-        
-        .element-3 {
-            bottom: 10%;
-            left: 20%;
-            width: 30px;
-            height: 30px;
-            animation: float 5s ease-in-out infinite 0.5s;
-        }
-        
+
         @keyframes float {
             0% {
                 transform: translateY(0) translateX(0);
-            }
-            50% {
-                transform: translateY(-20px) translateX(10px);
+                opacity: 1;
             }
             100% {
-                transform: translateY(0) translateX(0);
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
             }
-        }
-        
-        .card-grid {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(to right, rgba(0, 85, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 85, 255, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            mask-image: radial-gradient(circle, white 30%, transparent 70%);
-            pointer-events: none;
-        }
-        
-        .card-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: var(--primary);
-            color: white;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: 16px;
-            text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 85, 255, 0.3);
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .card-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--accent);
-            transition: all 0.4s;
-            z-index: -1;
-        }
-        
-        .card-button:hover::before {
-            left: 0;
-        }
-        
-        .card-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 198, 255, 0.4);
-        }
-        
-        /* Кнопка Telegram */
-        .telegram-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
-            background: var(--primary);
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 700;
-            font-size: 16px;
-            text-decoration: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            position: relative;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 85, 255, 0.3);
-            border: none;
-            cursor: pointer;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        .telegram-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--accent);
-            transition: all 0.4s;
-            z-index: -1;
-        }
-        
-        .telegram-button:hover::before {
-            left: 0;
-        }
-        
-        .telegram-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 198, 255, 0.4);
-        }
-        
-        .telegram-button:active {
-            transform: translateY(-1px);
-        }
-        
-        .telegram-icon {
-            font-size: 20px;
-            margin-right: 5px;
         }
 
-        /* Затемнення фону при відкритому мобільному меню */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            z-index: 998;
-        }
-        
-        .overlay.active {
-            display: block;
-        }
-        
-        /* Оновлений футер з копірайтом */
-        footer {
-            margin-top: 70px;
-            padding: 25px 0;
-            text-align: center;
-            font-size: 14px;
-            color: var(--text-secondary);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            background: linear-gradient(to bottom, transparent, rgba(0, 85, 255, 0.05));
-            position: relative;
-            z-index: 2;
-        }
-        
-        /* Адаптивність */
-        @media (max-width: 992px) {
-            .welcome-text h1 {
-                font-size: 40px;
+        /* Медіа-запити для адаптивності */
+        @media (max-width: 1024px) {
+            .title {
+                font-size: 3.5rem;
             }
             
-            .welcome-text p {
-                font-size: 20px;
-            }
-            
-            .card-container {
+            .orb {
                 width: 300px;
-                height: 350px;
+                height: 300px;
             }
         }
-        
-        @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-                margin-top: 30px;
-                text-align: center; /* Центруємо текст на мобільних */
-            }
-            
-            .welcome-text, .visual-container {
-                width: 100%;
-                padding: 0;
-                margin-bottom: 40px;
-                display: flex;
-                flex-direction: column;
-                align-items: center; /* Вирівнюємо елементи по центру */
-            }
-            
-            .welcome-text {
-                margin-bottom: 40px;
-                padding-right: 0;
-            }
 
-            .welcome-text h1, .welcome-text p {
-                text-align: center;
-                max-width: 100%;
+        @media (max-width: 768px) {
+            .header {
+                padding: 20px 0;
             }
             
-            .visual-container {
-                height: 350px;
-                display: flex;
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                flex-direction: column;
                 justify-content: center;
+                align-items: center;
+                transition: all 0.5s ease;
+                backdrop-filter: blur(20px);
+                background: rgba(15, 12, 41, 0.9);
+                z-index: 10;
             }
             
-            .site-name {
-                font-size: 20px;
+            .nav-menu.active {
+                right: 0;
             }
             
-            .nav-links {
-                display: none;
-            }
-            
-            /* Показуємо кнопку мобільного меню на мобільних */
             .mobile-menu-btn {
                 display: block;
             }
             
-            .card-container {
-                width: 250px;
-                height: 320px;
+            .content {
+                flex-direction: column-reverse;
+                text-align: center;
+                height: auto;
+                padding-top: 20px;
             }
             
-            .card-title {
-                font-size: 24px;
+            .hero-text {
+                padding-right: 0;
+                margin-top: 40px;
             }
             
-            .card-description {
-                font-size: 14px;
+            .title {
+                font-size: 2.8rem;
             }
-
-            /*Центруємо кнопку телеграм */
-            .telegram-button {
-                margin: 30px auto 0;
-                display: flex;
+            
+            .subtitle {
+                margin: 20px auto 30px;
+                font-size: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .orb {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .hero-visual {
+                height: 40vh;
             }
         }
-            
+
         @media (max-width: 480px) {
-            .container {
-                padding: 15px;
+            .title {
+                font-size: 2.2rem;
             }
             
-            .welcome-text h1 {
-                font-size: 32px;
+            .subtitle {
+                font-size: 0.9rem;
             }
             
-            .welcome-text p {
-                font-size: 18px;
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+            
+            .orb {
+                width: 180px;
+                height: 180px;
             }
             
             .logo {
-                width: 35px;
-                height: 35px;
-                font-size: 14px;
-            }
-            
-            .site-name {
                 font-size: 18px;
             }
             
-            .telegram-button {
-                padding: 10px 20px;
-                font-size: 16px;
-                margin: 20px auto 0;
-            }
-            
-            .visual-container {
-                height: 300px;
-            }
-            
-            .card-container {
-                width: 230px;
-                height: 300px;
-            }
-            
-            .card-title {
-                font-size: 20px;
-            }
-            
-            .card-description {
-                font-size: 13px;
-            }
-            
-            /* Адаптація анімованих блобів для мобільних пристроїв */
-            .blob-1, .blob-2 {
-                width: 250px;
-                height: 250px;
+            .logo-icon {
+                width: 32px;
+                height: 32px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Додаємо анімований фон -->
-    <div class="animated-background">
-        <div class="animated-blob blob-1"></div>
-        <div class="animated-blob blob-2"></div>
-        <div class="animated-blob blob-3"></div>
-        <div class="animated-blob blob-4"></div>
-        <div class="content-overlay"></div>
-    </div>
+    <div class="floating-particles" id="particles"></div>
     
     <div class="container">
-        <header>
-            <div class="logo-wrap">
-                <img src="logo.png" alt="Nomire External Logo" class="logo">
-                <div class="site-name">NOMIRE EXTERNAL</div>
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon"><span>NF</span></div>
+                NexusFusion
             </div>
-            
-            <nav>
-                <ul class="nav-links">
-                    <li>
-                        <a href="Index.html" class="nav-link active">
-                            <svg class="nav-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                            </svg>
-                            Головна
-                        </a>
-                    </li>
-                    <li>
-                        <a href="meet.html" class="nav-link">
-                            <svg class="nav-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg>
-                            Міт
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link">
-                            <svg class="nav-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                            Ігри
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link">
-                            <svg class="nav-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                            </svg>
-                            Налаштування
-                        </a>
-                    </li>
-                </ul>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+            <nav class="nav-menu" id="nav-menu">
+                <div class="nav-item">Головна</div>
+                <div class="nav-item">Портфоліо</div>
+                <div class="nav-item">Проекти</div>
+                <div class="nav-item">Контакти</div>
             </nav>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
         </header>
-        
-        <!-- Затемнення фону при відкритому меню -->
-        <div class="overlay" id="overlay"></div>
 
-        <!-- Мобільне меню -->
-        <div class="mobile-nav" id="mobileNav">
-            <button class="close-menu" id="closeMenu">✕</button>
-            <ul class="mobile-nav-links">
-                <li>
-                    <a href="Index.html" class="mobile-nav-link active">
-                        <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                            </svg>
-                            Головна
-                        </a>
-                    </li>
-                    <li>
-                        <a href="meet.html" class="mobile-nav-link">
-                            <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg> 
-                            Міт
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="mobile-nav-link">
-                            <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                            Ігри
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="mobile-nav-link">
-                            <svg class="mobile-nav-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                           </svg>
-                            Налаштування
-                        </a>
-                    </li>
-                </ul>
-            </div>
-                                
-        <div class="main-content">
-            <div class="welcome-text">
-                <h1>Ласкаво просимо!</h1>
-                <p>Раді тебе бачити на нашому сайті. Надіємось, що ти залишишся з нами надовго!</p>
-                
-                <a href="https://t.me/nomireexternal" class="telegram-button">
-                    <svg class="telegram-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 2L11 13"></path>
-                        <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
-                    </svg>
-                    Telegram
-                </a>
-            </div>
-
-            <div class="visual-container">
-    <div class="card-container">
-        <div class="card">
-            <div class="card-elements">
-                <div class="element element-1"></div>
-                <div class="element element-2"></div>
-                <div class="element element-3"></div>
-                <div class="card-grid"></div>
-            </div>
-            <div class="card-content">
-                <div>
-                    <h3 class="card-title">Nomire External</h3>
-                    <p class="card-description">Наш сайт пропонує зручний доступ до всіх необхідних інструментів та інформації. Приєднуйтесь до нашої спільноти вже сьогодні!</p>
+        <main class="content">
+            <div class="hero-text">
+                <h1 class="title" data-text="Ласкаво просимо!">Ласкаво просимо!</h1>
+                <p class="subtitle">Надіємось, що ти залишишся з нами надовго! Разом ми створимо щось неймовірне та захоплююче.</p>
+                <div class="cta-buttons">
+                    <a href="https://t.me/nexusfusion" class="btn btn-primary">
+                        <span class="telegram-icon">✈</span>
+                        Телеграм
+                    </a>
+                    <button class="btn btn-secondary">Дізнатися більше</button>
                 </div>
-                <a href="meet.html" class="card-button">
-                    Дізнатися більше
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14"></path>
-                        <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                </a>
             </div>
-        </div>
-    </div>
-</div>
-</div>
-        
-        <footer>
-            &copy; 2025 Nomire External. Усі права захищено.
+            <div class="hero-visual">
+                <div class="orb"></div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 NexusFusion. Всі права захищені.</p>
         </footer>
     </div>
 
     <script>
-        // Додай цей код після існуючого JavaScript
-        // Визначаємо поточну сторінку і додаємо клас active для мобільного меню
-        document.addEventListener('DOMContentLoaded', function() {
-            // Обработчики для мобильного меню
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileNav = document.getElementById('mobileNav');
-            const overlay = document.getElementById('overlay');
-            const closeMenu = document.getElementById('closeMenu');
-            // Открыть меню
-            mobileMenuBtn.addEventListener('click', function() {
-                mobileNav.classList.add('active');
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Предотвращаем прокрутку страницы
-            });
+        // Create particles
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 50;
 
-            // Закрыть меню (кнопка закрытия)
-            closeMenu.addEventListener('click', function() {
-                mobileNav.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = ''; // Возвращаем прокрутку
-            });
+        for (let i = 0; i < particleCount; i++) {
+            createParticle();
+        }
 
-            // Закрыть меню при клике на overlay
-            overlay.addEventListener('click', function() {
-                mobileNav.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-
-            // Ваш существующий код
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
             
-            // Мобільне меню
-            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-            mobileLinks.forEach(link => {
-                const linkHref = link.getAttribute('href');
-                if (linkHref === currentPage) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
+            // Random position
+            const posX = Math.random() * window.innerWidth;
+            const posY = Math.random() * window.innerHeight;
+            particle.style.left = posX + 'px';
+            particle.style.top = posY + 'px';
+            
+            // Random size
+            const size = Math.random() * 5 + 1;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            
+            // Random opacity
+            particle.style.opacity = Math.random() * 0.5 + 0.3;
+            
+            // Random animation duration
+            const duration = Math.random() * 15 + 5;
+            particle.style.animation = `float ${duration}s infinite linear`;
+            
+            // Random animation delay
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            
+            particlesContainer.appendChild(particle);
+            
+            // Remove and recreate particle after animation ends
+            setTimeout(() => {
+                particle.remove();
+                createParticle();
+            }, duration * 1000);
+        }
+
+        // Add hover effect to orb
+        const orb = document.querySelector('.orb');
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            orb.style.transform = `translate(${mouseX * 20 - 10}px, ${mouseY * 20 - 10}px) scale(${1 + mouseY * 0.1})`;
+            orb.style.background = `radial-gradient(circle at ${mouseX * 100}% ${mouseY * 100}%, #74ebd5, #6a55fa, #0b084d)`;
+        });
+
+        // Add interactive hover effect to nav items
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('mouseover', () => {
+                navItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.style.opacity = '0.6';
+                    }
+                });
+            });
+            
+            item.addEventListener('mouseout', () => {
+                navItems.forEach(otherItem => {
+                    otherItem.style.opacity = '1';
+                });
             });
         });
 
-        // Также добавляем активный класс для десктопного меню  
-        const desktopLinks = document.querySelectorAll('.nav-link');
-        desktopLinks.forEach(link => {
-            const linkHref = link.getAttribute('href');
-            if (linkHref === currentPage) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
+        // Title animation
+        const title = document.querySelector('.title');
+        setInterval(() => {
+            title.style.filter = `hue-rotate(${Math.random() * 30}deg)`;
+        }, 2000);
+        
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+        
+        // Close menu when clicking on a menu item (for mobile)
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                    mobileMenuBtn.textContent = '☰';
+                }
+            });
+        });
+        
+        // Close menu when clicking outside (for mobile)
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && 
+                !navMenu.contains(e.target) && 
+                e.target !== mobileMenuBtn) {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
             }
         });
-
-        // Інтерактивність для карточки
-        const cardContainer = document.querySelector('.card-container');
-        
-        if (cardContainer) {
-            document.addEventListener('mousemove', function(e) {
-                if (window.innerWidth > 768) { // Тільки для десктопів
-                    const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-                    const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-                    cardContainer.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-                }
-            });
-            
-            // Повертаємо в початкове положення при виході миші
-            document.addEventListener('mouseleave', function() {
-                cardContainer.style.transform = 'rotateY(0deg) rotateX(0deg)';
-            });
-        }
     </script>
 </body>
-</html>            
+</html>
