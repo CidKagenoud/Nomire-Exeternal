@@ -3,23 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NexusFusion - творчість та інновації">
-    <meta property="og:title" content="NexusFusion">
-    <meta property="og:description" content="Разом ми створимо щось неймовірне та захоплююче">
-    <meta property="og:type" content="website">
     <title>NexusFusion</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij4KICAgPGRlZnM+CiAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDI9IjEiIHkyPSIxIj4KICAgICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDBkMmZmIiAvPgogICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNhN2JkNSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgPC9kZWZzPgogICA8cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iNTYiIGhlaWdodD0iNTYiIHJ4PSIxMiIgZmlsbD0icmdiYSgxNSwgMTIsIDQxLCAwLjgpIiAvPgogICA8cGF0aCBkPSJNMjIgMTZMNDIgMTZMNDIgMjZMMzIgMzZMMzIgNDhNMzIgMzZMNDIgNDYiIHN0cm9rZT0idXJsKCNncmFkKSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiLz4KICAgPGNpcmNsZSBjeD0iMjIiIGN5PSI0MCIgcj0iOCIgZmlsbD0idXJsKCNncmFkKSIgLz4KPC9zdmc+" />
-    <!-- Альтернативний формат для сумісності -->
+    <!-- Додаємо альтернативні формати для кращої сумісності -->
     <link rel="shortcut icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij4KICAgPGRlZnM+CiAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDI9IjEiIHkyPSIxIj4KICAgICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDBkMmZmIiAvPgogICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNhN2JkNSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgPC9kZWZzPgogICA8cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iNTYiIGhlaWdodD0iNTYiIHJ4PSIxMiIgZmlsbD0icmdiYSgxNSwgMTIsIDQxLCAwLjgpIiAvPgogICA8cGF0aCBkPSJNMjIgMTZMNDIgMTZMNDIgMjZMMzIgMzZMMzIgNDhNMzIgMzZMNDIgNDYiIHN0cm9rZT0idXJsKCNncmFkKSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiLz4KICAgPGNpcmNsZSBjeD0iMjIiIGN5PSI0MCIgcj0iOCIgZmlsbD0idXJsKCNncmFkKSIgLz4KPC9zdmc+" />
     <style>
-        :root {
-            --primary-color: #00d2ff;
-            --secondary-color: #3a7bd5;
-            --dark-bg: #0f0c29;
-            --text-color: #fff;
-            --header-height: 80px;
-        }
-        
         * {
             margin: 0;
             padding: 0;
@@ -27,24 +15,13 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01s !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01s !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
         body {
             background: linear-gradient(125deg, #0f0c29, #302b63, #24243e);
             background-size: 400% 400%;
-            color: var(--text-color);
+            color: #fff;
             min-height: 100vh;
             animation: gradientBG 15s ease infinite;
             overflow-x: hidden;
-            font-size: 16px;
-            line-height: 1.5;
         }
 
         @keyframes gradientBG {
@@ -64,7 +41,7 @@
             z-index: 1;
         }
 
-        /* Хедер */
+        /* Плашка хедера */
         .header-wrapper {
             position: fixed;
             top: 0;
@@ -77,7 +54,6 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             transform: translateY(-100%);
             animation: slideDown 0.8s ease forwards;
-            will-change: transform;
         }
 
         @keyframes slideDown {
@@ -102,10 +78,9 @@
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--text-color);
+            color: #fff;
             text-shadow: 0 0 10px rgba(110, 223, 252, 0.7);
             animation: fadeIn 1s ease;
-            text-decoration: none;
         }
 
         @keyframes fadeIn {
@@ -132,7 +107,6 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.18);
             animation: pulse 2s infinite ease-in-out;
-            will-change: box-shadow, transform;
         }
 
         @keyframes pulse {
@@ -149,7 +123,7 @@
 
         .logo-icon span {
             font-size: 22px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -177,19 +151,12 @@
             position: relative;
             overflow: hidden;
             border-radius: 20px 0 20px 0;
-            outline: none; /* Remove default focus outline */
         }
 
-        .nav-item:hover,
-        .nav-item:focus {
+        .nav-item:hover {
             background: rgba(255, 255, 255, 0.1);
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .nav-item:focus-visible {
-            box-shadow: 0 0 0 3px var(--primary-color);
-            outline: none;
         }
 
         .nav-item.active {
@@ -226,7 +193,6 @@
             border-radius: 12px;
             cursor: pointer;
             z-index: 100;
-            aria-label="Відкрити меню";
         }
 
         .content {
@@ -263,7 +229,6 @@
             -webkit-text-fill-color: transparent;
             position: relative;
             display: inline-block;
-            will-change: filter;
         }
 
         .title::after {
@@ -316,13 +281,8 @@
             text-decoration: none;
         }
 
-        .btn:focus-visible {
-            box-shadow: 0 0 0 3px #fff, 0 0 0 6px var(--primary-color);
-            outline: none;
-        }
-
         .btn-primary {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5);
             color: white;
             box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
         }
@@ -382,7 +342,6 @@
             position: relative;
             overflow: hidden;
             animation: floatOrb 6s ease-in-out infinite;
-            will-change: transform;
         }
 
         @keyframes floatOrb {
@@ -402,6 +361,40 @@
             pointer-events: none;
         }
 
+        .floating-particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: float 8s infinite linear;
+        }
+
+        /* Іконка Телеграма */
+        .telegram-icon {
+            display: inline-block;
+            margin-right: 8px;
+            transform: rotate(-45deg);
+            font-size: 1.2em;
+            animation: moveIcon 2s infinite ease-in-out;
+        }
+
+        @keyframes moveIcon {
+            0%, 100% { transform: rotate(-45deg) translateX(0); }
+            50% { transform: rotate(-45deg) translateX(5px); }
+        }
+
         /* Копірайт плашка */
         .footer-wrapper {
             background: rgba(12, 10, 33, 0.8);
@@ -419,6 +412,17 @@
             margin: 0 auto;
             opacity: 0;
             animation: fadeIn 1s ease 1.5s forwards;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
         }
 
         /* Медіа-запити для адаптивності */
@@ -468,9 +472,9 @@
                 text-align: center;
                 height: auto;
                 padding-top: 100px;
-                justify-content: center;
+                justify-content: center; /* Змінено з flex-start на center */
                 align-items: center;
-                min-height: calc(100vh - 100px);
+                min-height: calc(100vh - 100px); /* Додано для вертикального центрування */
             }
             
             .hero-text {
@@ -484,7 +488,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;
+                justify-content: center; /* Додано для вертикального центрування */
             }
             
             .hero-visual {
@@ -498,7 +502,7 @@
             
             .title {
                 font-size: 2.8rem;
-                margin-top: 0;
+                margin-top: 0; /* Змінено з 20px на 0 */
                 text-align: center;
                 width: 100%;
             }
@@ -523,6 +527,7 @@
             }
         }
 
+        /* Додаткові зміни для кращого вертикального центрування на мобільних */
         @media (max-width: 768px) and (min-height: 700px) {
             .container {
                 display: flex;
@@ -578,87 +583,41 @@
                 padding: 0;
             }
         }
-
-        /* Стилі для екранних читачів */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            border: 0;
-        }
-
-        /* Індикатор завантаження */
-        .loading-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            z-index: 1000;
-            transform: scaleX(0);
-            transform-origin: left;
-            animation: loading 1s ease-out forwards;
-        }
-
-        @keyframes loading {
-            0% { transform: scaleX(0); }
-            70% { transform: scaleX(0.7); }
-            100% { transform: scaleX(1); }
-        }
-
-        /* Анімація для тексту заголовку */
-        .title-char {
-            display: inline-block;
-            animation: wave 2s ease-in-out infinite;
-            animation-delay: calc(0.1s * var(--char-index));
-            transform-origin: bottom;
-        }
-
-        @keyframes wave {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
     </style>
 </head>
 <body>
-    <div class="loading-indicator" id="loading"></div>
-    <canvas class="floating-particles" id="particles-canvas"></canvas>
+    <div class="floating-particles" id="particles"></div>
     
     <div class="header-wrapper">
         <header class="header">
-            <a href="/" class="logo" aria-label="NexusFusion">
-                <div class="logo-icon" aria-hidden="true"><span>NF</span></div>
+            <div class="logo">
+                <div class="logo-icon"><span>NF</span></div>
                 NexusFusion
-            </a>
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Відкрити меню" aria-expanded="false">☰</button>
-            <nav class="nav-menu" id="nav-menu" aria-label="Головна навігація">
-                <div class="nav-item active" tabindex="0" role="button" aria-current="page">Головна</div>
-                <div class="nav-item" tabindex="0" role="button">Мої Ігри</div>
-                <div class="nav-item" tabindex="0" role="button">Налаштування</div>
-                <div class="nav-item" tabindex="0" role="button">Контакти</div>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+            <nav class="nav-menu" id="nav-menu">
+                <div class="nav-item active">Головна</div>
+                <div class="nav-item">Мій Ігри</div>
+                <div class="nav-item">Налаштування</div>
+                <div class="nav-item">Контакти</div>
             </nav>
         </header>
     </div>
     
     <div class="container">
         <main class="content">
-            <section class="hero-text">
-                <h1 class="title" data-text="Ласкаво просимо!" id="welcome-title">Ласкаво просимо!</h1>
+            <div class="hero-text">
+                <h1 class="title" data-text="Ласкаво просимо!">Ласкаво просимо!</h1>
                 <p class="subtitle">Надіємось, що ти залишишся з нами надовго! Разом ми створимо щось неймовірне та захоплююче.</p>
                 <div class="cta-buttons">
-                    <a href="https://t.me/nexusfusion" class="btn btn-primary" aria-label="Перейти до Телеграм каналу">
-                        <span class="telegram-icon" aria-hidden="true">✈</span>
+                    <a href="https://t.me/nexusfusion" class="btn btn-primary">
+                        <span class="telegram-icon">✈</span>
                         Телеграм
                     </a>
                     <button class="btn btn-secondary">Дізнатися більше</button>
                 </div>
-            </section>
-            <div class="hero-visual" aria-hidden="true">
+            </div>
+            <div class="hero-visual">
                 <div class="orb"></div>
             </div>
         </main>
@@ -671,143 +630,130 @@
     </div>
 
     <script>
-        // Індикатор завантаження
-        document.addEventListener('DOMContentLoaded', () => {
-            const loading = document.getElementById('loading');
-            loading.style.opacity = '0';
+        // Create particles
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+            createParticle();
+        }
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random position
+            const posX = Math.random() * window.innerWidth;
+            const posY = Math.random() * window.innerHeight;
+            particle.style.left = posX + 'px';
+            particle.style.top = posY + 'px';
+            
+            // Random size
+            const size = Math.random() * 5 + 1;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            
+            // Random opacity
+            particle.style.opacity = Math.random() * 0.5 + 0.3;
+            
+            // Random animation duration
+            const duration = Math.random() * 15 + 5;
+            particle.style.animation = `float ${duration}s infinite linear`;
+            
+            // Random animation delay
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            
+            particlesContainer.appendChild(particle);
+            
+            // Remove and recreate particle after animation ends
             setTimeout(() => {
-                loading.style.display = 'none';
-            }, 1000);
+                particle.remove();
+                createParticle();
+            }, duration * 1000);
+        }
+
+        // Add hover effect to orb
+        const orb = document.querySelector('.orb');
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            orb.style.transform = `translate(${mouseX * 20 - 10}px, ${mouseY * 20 - 10}px) scale(${1 + mouseY * 0.1})`;
+            orb.style.background = `radial-gradient(circle at ${mouseX * 100}% ${mouseY * 100}%, #74ebd5, #6a55fa, #0b084d)`;
         });
 
-        // Canvas для частинок
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-        let width = window.innerWidth;
-        let height = window.innerHeight;
-        
-        canvas.width = width;
-        canvas.height = height;
-        
-        // Налаштування частинок
-        const particleCount = 50;
-        const particles = [];
-        
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.size = Math.random() * 5 + 1;
-                this.speedX = Math.random() * 3 - 1.5;
-                this.speedY = Math.random() * 3 - 1.5;
-                this.color = `rgba(${Math.random() * 100 + 155}, ${Math.random() * 100 + 155}, 255, ${Math.random() * 0.5 + 0.3})`;
-            }
-            
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                
-                // Перевірка границь
-                if (this.x < 0 || this.x > width) this.speedX *= -1;
-                if (this.y < 0 || this.y > height) this.speedY *= -1;
-            }
-            
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-        
-        // Створення частинок
-        function init() {
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-        
-        // Анімація частинок
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
+        // Add interactive hover effect to nav items
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Remove active class from all items
+                navItems.forEach(navItem => {
+                    navItem.classList.remove('active');
+                });
+                // Add active class to clicked item
+                item.classList.add('active');
             });
             
-            requestAnimationFrame(animate);
-        }
-        
-        init();
-        animate();
-        
-        // Оновлення розміру canvas при зміні розміру вікна
-        window.addEventListener('resize', () => {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
+            item.addEventListener('mouseover', () => {
+                navItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.style.opacity = '0.6';
+                    }
+                });
+            });
+            
+            item.addEventListener('mouseout', () => {
+                navItems.forEach(otherItem => {
+                    otherItem.style.opacity = '1';
+                });
+            });
         });
+
+        // Title animation
+        const title = document.querySelector('.title');
+        setInterval(() => {
+            title.style.filter = `hue-rotate(${Math.random() * 30}deg)`;
+        }, 2000);
         
-        // Мобільне меню
+        // Mobile menu
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
         
         mobileMenuBtn.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            const expanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true' || false;
-            mobileMenuBtn.setAttribute('aria-expanded', !expanded);
-            mobileMenuBtn.textContent = expanded ? '☰' : '✕';
+            mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
         });
         
-        // Анімація для заголовка
-        const welcomeTitle = document.getElementById('welcome-title');
-        if (welcomeTitle) {
-            const text = welcomeTitle.textContent;
-            welcomeTitle.textContent = '';
-            
-            for (let i = 0; i < text.length; i++) {
-                const span = document.createElement('span');
-                span.classList.add('title-char');
-                span.style.setProperty('--char-index', i);
-                span.textContent = text[i];
-                welcomeTitle.appendChild(span);
-            }
-        }
-        
-        // Плавний скролл для кнопок
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                if (this.classList.contains('btn-secondary')) {
-                    e.preventDefault();
-                    const footer = document.querySelector('.footer-wrapper');
-                    footer.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-        
-        // Інтерактивність для навігаційних елементів
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function() {
-                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Закриття мобільного меню після кліку
+        // Close menu when clicking on a menu item (for mobile)
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
                     navMenu.classList.remove('active');
-                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
                     mobileMenuBtn.textContent = '☰';
                 }
             });
-            
-            // Доступність через клавіатуру
-            item.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.click();
-                }
-            });
+        });
+        
+        // Close menu when clicking outside (for mobile)
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && 
+                !navMenu.contains(e.target) && 
+                e.target !== mobileMenuBtn) {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            }
+        });
+        
+        // Scroll header effect
+        const headerWrapper = document.querySelector('.header-wrapper');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                headerWrapper.style.padding = '10px 0';
+                headerWrapper.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.2)';
+            } else {
+                headerWrapper.style.padding = '15px 0';
+                headerWrapper.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+            }
         });
     </script>
 </body>
