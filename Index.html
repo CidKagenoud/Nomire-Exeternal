@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexusFusion</title>
-        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij4KICAgPGRlZnM+CiAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDI9IjEiIHkyPSIxIj4KICAgICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDBkMmZmIiAvPgogICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNhN2JkNSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgPC9kZWZzPgogICA8cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iNTYiIGhlaWdodD0iNTYiIHJ4PSIxMiIgZmlsbD0icmdiYSgzMSwgMzgsIDEzNSwgMC4zKSIgLz4KICAgPHRleHQgeD0iMzIiIHk9IjQwIiBmb250LWZhbWlseT0iJ1NlZ29lIFVJJywgVGFob21hLCBHZW5ldmEsIFZlcmRhbmEsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ1cmwoI2dyYWQpIj5ORjwvdGV4dD4KPC9zdmc+" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij4KICAgPGRlZnM+CiAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDI9IjEiIHkyPSIxIj4KICAgICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDBkMmZmIiAvPgogICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNhN2JkNSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgPC9kZWZzPgogICA8cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iNTYiIGhlaWdodD0iNTYiIHJ4PSIxMiIgZmlsbD0icmdiYSgxNSwgMTIsIDQxLCAwLjgpIiAvPgogICA8cGF0aCBkPSJNMjIgMTZMNDIgMTZMNDIgMjZMMzIgMzZMMzIgNDhNMzIgMzZMNDIgNDYiIHN0cm9rZT0idXJsKCNncmFkKSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiLz4KICAgPGNpcmNsZSBjeD0iMjIiIGN5PSI0MCIgcj0iOCIgZmlsbD0idXJsKCNncmFkKSIgLz4KPC9zdmc+" />
     <!-- Додаємо альтернативні формати для кращої сумісності -->
-    <link rel="shortcut icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij4KICAgPGRlZnM+CiAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDI9IjEiIHkyPSIxIj4KICAgICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDBkMmZmIiAvPgogICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNhN2JkNSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgPC9kZWZzPgogICA8cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iNTYiIGhlaWdodD0iNTYiIHJ4PSIxMiIgZmlsbD0icmdiYSgzMSwgMzgsIDEzNSwgMC4zKSIgLz4KICAgPHRleHQgeD0iMzIiIHk9IjQwIiBmb250LWZhbWlseT0iJ1NlZ29lIFVJJywgVGFob21hLCBHZW5ldmEsIFZlcmRhbmEsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ1cmwoI2dyYWQpIj5ORjwvdGV4dD4KPC9zdmc+" />
+    <link rel="shortcut icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij4KICAgPGRlZnM+CiAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZCIgeDI9IjEiIHkyPSIxIj4KICAgICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDBkMmZmIiAvPgogICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNhN2JkNSIgLz4KICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgPC9kZWZzPgogICA8cmVjdCB4PSI0IiB5PSI0IiB3aWR0aD0iNTYiIGhlaWdodD0iNTYiIHJ4PSIxMiIgZmlsbD0icmdiYSgxNSwgMTIsIDQxLCAwLjgpIiAvPgogICA8cGF0aCBkPSJNMjIgMTZMNDIgMTZMNDIgMjZMMzIgMzZMMzIgNDhNMzIgMzZMNDIgNDYiIHN0cm9rZT0idXJsKCNncmFkKSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiLz4KICAgPGNpcmNsZSBjeD0iMjIiIGN5PSI0MCIgcj0iOCIgZmlsbD0idXJsKCNncmFkKSIgLz4KPC9zdmc+" />
     <style>
         * {
             margin: 0;
@@ -468,38 +468,71 @@
             }
             
             .content {
-                flex-direction: column-reverse;
+                flex-direction: column;
                 text-align: center;
                 height: auto;
                 padding-top: 100px;
+                justify-content: center; /* Змінено з flex-start на center */
+                align-items: center;
+                min-height: calc(100vh - 100px); /* Додано для вертикального центрування */
             }
             
             .hero-text {
                 padding-right: 0;
-                margin-top: 40px;
+                order: 1;
+                margin-bottom: 30px;
+                width: 100%;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center; /* Додано для вертикального центрування */
+            }
+            
+            .hero-visual {
+                order: 2;
+                height: auto;
+                margin-bottom: 30px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
             }
             
             .title {
                 font-size: 2.8rem;
+                margin-top: 0; /* Змінено з 20px на 0 */
+                text-align: center;
+                width: 100%;
             }
             
             .subtitle {
                 margin: 20px auto 30px;
                 font-size: 1rem;
+                text-align: center;
             }
             
             .cta-buttons {
-                flex-direction: column;
+                justify-content: center;
                 align-items: center;
+                width: 100%;
+                margin-bottom: 20px;
             }
             
             .orb {
                 width: 220px;
                 height: 220px;
+                margin: 0 auto;
             }
-            
-            .hero-visual {
-                height: 40vh;
+        }
+
+        /* Додаткові зміни для кращого вертикального центрування на мобільних */
+        @media (max-width: 768px) and (min-height: 700px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
         }
 
@@ -510,11 +543,14 @@
             
             .subtitle {
                 font-size: 0.9rem;
+                padding: 0 10px;
             }
             
             .btn {
                 padding: 12px 24px;
                 font-size: 0.9rem;
+                width: 80%;
+                justify-content: center;
             }
             
             .orb {
@@ -529,6 +565,22 @@
             .logo-icon {
                 width: 32px;
                 height: 32px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                width: 100%;
+            }
+            
+            .content {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            
+            .container {
+                padding: 0;
             }
         }
     </style>
@@ -545,8 +597,8 @@
             <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
             <nav class="nav-menu" id="nav-menu">
                 <div class="nav-item active">Головна</div>
-                <div class="nav-item">Портфоліо</div>
-                <div class="nav-item">Проекти</div>
+                <div class="nav-item">Мій Ігри</div>
+                <div class="nav-item">Налаштування</div>
                 <div class="nav-item">Контакти</div>
             </nav>
         </header>
