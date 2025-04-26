@@ -54,12 +54,12 @@
     }
     
     .logo img {
-      height: 34px; /* Збільшено розмір логотипу */
+      height: 34px;
     }
     
     nav {
       display: flex;
-      gap: 15px;
+      gap: 10px;
       justify-content: center;
       flex: 2;
     }
@@ -68,10 +68,12 @@
       color: #333;
       text-decoration: none;
       font-size: 16px;
-      padding: 8px 16px;
-      border-radius: 20px;
+      padding: 6px 12px;  /* Зменшено відступи */
+      border-radius: 6px;  /* Зменшено заокруглення для більш квадратного вигляду */
       transition: all 0.2s;
       background-color: transparent;
+      display: inline-block;  /* Для кращого обтікання тексту */
+      line-height: 1.2;  /* Для кращої висоти контейнера */
     }
     
     nav a:hover {
@@ -137,7 +139,7 @@
     }
     
     .mobile-menu .mobile-logo img {
-      height: 100px; /* Збільшено розмір логотипу */
+      height: 100px;
     }
     
     .mobile-menu a {
@@ -145,8 +147,8 @@
       text-decoration: none;
       font-size: 18px;
       display: block;
-      padding: 12px 16px;
-      border-radius: 20px;
+      padding: 10px 14px;  /* Зменшено відступи */
+      border-radius: 6px;  /* Зменшено заокруглення для більш квадратного вигляду */
       transition: all 0.2s;
       margin-bottom: 8px;
     }
