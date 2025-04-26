@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pulsar - Профіль</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f7fb;
+      overflow-x: hidden;
+    }
+    
+    body.menu-open {
+      overflow: hidden;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+    }
+    
+    header {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: slideDown 0.6s ease forwards;
+      border: 1px solid #E0E0E0;
+    }
+    
+    .logo {
+      font-weight: 800;
+      font-size: 24px;
+      letter-spacing: 0.5px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo img {
+      height: 34px;
+    }
+    
+    nav {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex: 2;
+    }
+    
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.2s;
+      background-color: transparent;
+      display: inline-block;
+      line-height: 1.2;
+    }
+    
+    nav a:hover {
+      background-color: #f3f3f3;
+      border: none;
+      box-shadow: 0 0 0 1px #e6e6e6;
+    }
+    
+    nav a.active {
+      background-color: #e6f2ff;
+      box-shadow: 0 0 0 1px #33aeff;
+      color: #0062e6;
+      font-weight: 500;
+    }
+    
+    .actions {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #e6f2ff;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid #0062e6;
+    }
+    
+    .user-avatar:hover {
+      transform: scale(1.05);
+    }
+    
+    .user-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .telegram-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #0088cc;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 136, 204, 0.3);
+    }
+    
+    .telegram-btn:hover {
+      background: #0079b5;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 136, 204, 0.4);
+    }
+    
+    .telegram-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+    
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      z-index: 20;
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 5;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 280px;
+      height: 100vh;
+      background-color: white;
+      z-index: 20;
+      padding: 50px 20px;
+      transition: right 0.3s ease;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .mobile-menu.active {
+      right: 0;
+    }
+    
+    .mobile-menu .mobile-logo {
+      font-weight: 800;
+      font-size: 24px;
+      margin-bottom: 40px;
+      padding-left: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .mobile-menu .mobile-logo img {
+      height: 100px;
+    }
+    
+    .mobile-menu a {
+      color: #333;
+      text-decoration: none;
+      font-size: 18px;
+      display: block;
+      padding: 10px 14px;
+      border-radius: 6px;
+      transition: all 0.2s;
+      margin-bottom: 8px;
+    }
+    
+    .mobile-menu a:hover {
+      background-color: #f3f3f3;
+      box-shadow: 0 0 0 1px #e6e6e6;
+    }
+    
+    .mobile-menu .telegram-mobile {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #0088cc;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      margin-top: 20px;
+    }
+    
+    .mobile-menu .telegram-mobile:hover {
+      background: #0079b5;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 25;
+    }
+    
+    /* Профільна секція */
+    .profile-container {
+      display: flex;
+      gap: 30px;
+      margin-top: 40px;
+      margin-bottom: 60px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease forwards 0.3s;
+    }
+    
+    .profile-sidebar {
+      width: 300px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      padding: 25px;
+      border: 1px solid #E0E0E0;
+    }
+    
+    .profile-avatar-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 25px;
+      position: relative;
+    }
+    
+    .profile-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #e6f2ff;
+      border: 3px solid #0062e6;
+      position: relative;
+      margin-bottom: 5px;
+    }
+    
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .change-avatar-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: #0062e6;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s;
+      border: 2px solid white;
+    }
+    
+    .change-avatar-btn:hover {
+      transform: scale(1.1);
+    }
+    
+    .profile-name {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+    
+    .profile-name h2 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+    
+    .verified-badge {
+      color: #0062e6;
+      display: inline-flex;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .verified-badge:hover {
+      transform: scale(1.1);
+    }
+    
+    .profile-status {
+      color: #666;
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    
+    .profile-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .edit-profile-btn, .settings-btn {
+      flex: 1;
+      background: #f3f3f3;
+      border: none;
+      padding: 8px 0;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .edit-profile-btn:hover, .settings-btn:hover {
+      background: #e6e6e6;
+    }
+    
+    .profile-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #e6e6e6;
+    }
+    
+    .stat-item {
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .stat-item:hover {
+      transform: translateY(-2px);
+    }
+    
+    .stat-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0062e6;
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: #666;
+    }
+    
+    .profile-about {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #e6e6e6;
+    }
+    
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    
+    .about-text {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #555;
+    }
+    
+    .profile-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .profile-tabs {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      display: flex;
+      overflow: hidden;
+      border: 1px solid #E0E0E0;
+    }
+    
+    .profile-tab {
+      flex: 1;
+      padding: 15px 0;
+      text-align: center;
+      font-weight: 600;
+      color: #555;
+      background-color: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      border-bottom: 3px solid transparent;
+    }
+    
+    .profile-tab:hover {
+      background-color: #f9f9f9;
+    }
+    
+    .profile-tab.active {
+      background-color: white;
+      color: #0062e6;
+      border-bottom: 3px solid #0062e6;
+    }
+    
+    .tab-content {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      padding: 25px;
+      flex: 1;
+      min-height: 400px;
+      border: 1px solid #E0E0E0;
+    }
+    
+    /* Секція друзів */
+    .friends-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    
+    .friend-card {
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.2s;
+      border: 1px solid #e6e6e6;
+    }
+    
+    .friend-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .friend-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 10px;
+      background-color: #e6f2ff;
+      border: 2px solid #0062e6;
+    }
+    
+    .friend-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .friend-name {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .friend-status {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+    
+    .friend-actions {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
+    
+    .message-btn, .remove-btn {
+      flex: 1;
+      border: none;
+      padding: 6px 0;
+      border-radius: 5px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .message-btn {
+      background-color: #0062e6;
+      color: white;
+    }
+    
+    .message-btn:hover {
+      background-color: #0056cc;
+    }
+    
+    .remove-btn {
+      background-color: #f3f3f3;
+      color: #555;
+    }
+    
+    .remove-btn:hover {
+      background-color: #e6e6e6;
+    }
+    
+    .add-friend-section {
+      margin-bottom: 25px;
+    }
+    
+    .search-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .search-input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    
+    .search-input:focus {
+      border-color: #0062e6;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 98, 230, 0.2);
+    }
+    
+    .search-btn {
+      background-color: #0062e6;
+      color: white;
+      border: none;
+      padding: 0 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .search-btn:hover {
+      background-color: #0056cc;
+    }
+    
+    /* Модальні вікна */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-content {
+      background-color: white;
+      border-radius: 15px;
+      padding: 25px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      transform: translateY(-20px);
+      transition: all 0.3s;
+    }
+    
+    .modal.active .modal-content {
+      transform: translateY(0);
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    
+    .modal-close {
+      font-size: 24px;
+      cursor: pointer;
+      color: #666;
+      transition: all 0.2s;
+    }
+    
+    .modal-close:hover {
+      color: #333;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    
+    .form-input:focus {
+      border-color: #0062e6;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 98, 230, 0.2);
+    }
+    
+    .form-textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 10px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      resize: vertical;
+      transition: all 0.2s;
+    }
+    
+    .form-textarea:focus {
+      border-color: #0062e6;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 98, 230, 0.2);
+    }
+    
+    .color-options {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    
+    .color-option {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+    
+    .color-option:hover, .color-option.active {
+      transform: scale(1.1);
+      border-color: #333;
+    }
+    
+    .color-red { background-color: #e74c3c; }
+    .color-blue { background-color: #3498db; }
+    .color-green { background-color: #2ecc71; }
+    .color-purple { background-color: #9b59b6; }
+    .color-orange { background-color: #e67e22; }
+    .color-pink { background-color: #e84393; }
+    
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    .checkbox-input {
+      width: 18px;
+      height: 18px;
+    }
+    
+    .avatar-preview {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      overflow: hidden;
+      background-color: #e6f2ff;
+      border: 3px solid #0062e6;
+    }
+    
+    .avatar-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .avatar-upload {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .upload-btn {
+      background-color: #f3f3f3;
+      color: #333;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 10px;
+    }
+    
+    .upload-btn:hover {
+      background-color: #e6e6e6;
+    }
+    
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .cancel-btn, .save-btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .cancel-btn {
+      background-color: #f3f3f3;
+      color: #333;
+      border: none;
+    }
+    
+    .cancel-btn:hover {
+      background-color: #e6e6e6;
+    }
+    
+    .save-btn {
+      background-color: #0062e6;
+      color: white;
+      border: none;
+    }
+    
+    .save-btn:hover {
+      background-color: #0056cc;
+    }
+    
+    /* Пошук друзів UI */
+    .search-results {
+      margin-top: 10px;
+    }
+    
+    .user-card {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 8px;
+      transition: all 0.2s;
+      background-color: #f9f9f9;
+      margin-bottom: 10px;
+      border: 1px solid #e6e6e6;
+    }
+    
+    .user-card:hover {
+      background-color: #f0f0f0;
+    }
+    
+    .user-card-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 15px;
+      background-color: #e6f2ff;
+      border: 2px solid #0062e6;
+    }
+    
+    .user-card-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .user-card-info {
+      flex: 1;
+    }
+    
+    .user-card-name {
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .user-card-status {
+      font-size: 12px;
+      color: #666;
+    }
+    
+    .add-btn {
+      background-color: #0062e6;
+      color: white;
+      border: none;
+      padding: 6px 15px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .add-btn:hover {
+      background-color: #0056cc;
+    }
+    
+    /* Чат UI */
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+      height: 400px;
+    }
+    
+    .chat-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #e6e6e6;
+    }
+    
+    .chat-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #e6f2ff;
+      border: 2px solid #0062e6;
+    }
+    
+    .chat-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .chat-user-info {
+      flex: 1;
+    }
+    
+    .chat-user-name {
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .chat-user-status {
+      font-size: 12px;
+      color: #666;
+    }
+    
+    .chat-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .chat-action {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: #f3f3f3;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .chat-action:hover {
+      background-color: #e6e6e6;
+    }
+    
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .message {
+      max-width: 70%;
+      padding: 10px 15px;
+      border-radius: 15px;
+      font-size: 14px;
+      position: relative;
+    }
+    
+    .message-time {
+      font-size: 10px;
+      opacity: 0.7;
+      margin-top: 5px;
+      text-align: right;
+    }
+    
+    .message-incoming {
+      align-self: flex-start;
+      background-color: #f3f3f3;
+      border-bottom-left-radius: 5px;
+    }
+    
+    .message-outgoing {
+      align-self: flex-end;
+      background-color: #0062e6;
+      color: white;
+      border-bottom-right-radius: 5px;
+    }
+    
+    .chat-input-area {
+      padding-top: 15px;
+      border-top: 1px solid #e6e6e6;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .chat-input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 20px;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    
+    .chat-input:focus {
+      border-color: #0062e6;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 98, 230, 0.2);
+    }
+    
+    .send-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #0062e6;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    
+    .send-btn:hover {
+      background-color: #0056cc;
+    }
+    
+    @keyframes slideDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Mobile optimization */
+    @media (max-width: 768px) {
+      header {
+        padding: 15px;
+      }
+      
+      nav {
+        display: none;
+      }
+      
+      .actions .telegram-btn {
+        display: none;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      .profile-container {
+        flex-direction: column;
+      }
+      
+      .profile-sidebar {
+        width: 100%;
+      }
+      
+      .friends-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+  
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="logo.svg" alt="PULSAR">
+      </div>
+      
+      <nav>
+        <a href="#">Головна</a>
+        <a href="#" class="active">Профіль</a>
+        <a href="#">Повідомлення</a>
+        <a href="#">Друзі</a>
+        <a href="#">Групи</a>
+      </nav>
+      
+      <div class="actions">
+        <a href="#" class="telegram-btn">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.4394 4.62375C22.2744 4.49375 22.0566 4.45874 21.8574 4.52999L2.35775 11.3272C1.95901 11.4892 1.70901 11.8912 1.75588 12.3149C1.80275 12.7387 2.12469 13.0729 2.54588 13.1527L6.72026 13.8999L8.37963 20.1674C8.44556 20.3927 8.59994 20.5855 8.80869 20.6967C9.01744 20.808 9.26394 20.829 9.48807 20.7555L13.3798 19.2712L16.8124 21.72C17.0224 21.8742 17.2806 21.9547 17.5391 21.9547C17.6599 21.9547 17.7809 21.9352 17.8979 21.8962C18.2631 21.784 18.5396 21.4842 18.6244 21.1115L22.6084 5.53574C22.6737 5.24174 22.6041 4.93574 22.4394 4.62375ZM17.0959 8.25824L9.72588 14.183C9.56213 14.3152 9.45344 14.4999 9.41588 14.7075L8.83588 17.6092L7.85151 13.8055L17.0959 8.25824Z" fill="white"/>
+          </svg>
+          Telegram
+        </a>
+        <div class="user-avatar">
+          <img src="avatar.jpg" alt="User Avatar">
+        </div>
+        <div class="hamburger" onclick="openMenu()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </div>
+      </div>
+    </header>
+    
+    <div class="profile-container">
+      <div class="profile-sidebar">
+        <div class="profile-avatar-section">
+          <div class="profile-avatar">
+            <img src="avatar.jpg" alt="User Avatar">
+          </div>
+          <div class="change-avatar-btn" onclick="openModal('avatar-modal')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+            </svg>
+          </div>
+          <div class="profile-name">
+            <h2>Олександр К.</h2>
+            <div class="verified-badge" title="Верифікований користувач">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+          </div>
+          <div class="profile-status">Активний зараз</div>
+        </div>
+        
+        <div class="profile-buttons">
+          <button class="edit-profile-btn" onclick="openModal('edit-profile-modal')">Редагувати</button>
+          <button class="settings-btn" onclick="openModal('settings-modal')">Налаштування</button>
+        </div>
+        
+        <div class="profile-stats">
+          <div class="stat-item">
+            <div class="stat-value">256</div>
+            <div class="stat-label">Друзів</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">128</div>
+            <div class="stat-label">Публікацій</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">512</div>
+            <div class="stat-label">Підписників</div>
+          </div>
+        </div>
+        
+        <div class="profile-about">
+          <div class="section-title">Про мене</div>
+          <div class="about-text">
+            Розробник програмного забезпечення з Києва. Люблю подорожувати, читати та займатися спортом. Завжди готовий до нових викликів та знайомств.
+          </div>
+        </div>
+      </div>
+      
+      <div class="profile-main">
+        <div class="profile-tabs">
+          <div class="profile-tab active" onclick="switchTab('friends')">Друзі</div>
+          <div class="profile-tab" onclick="switchTab('messages')">Повідомлення</div>
+          <div class="profile-tab" onclick="switchTab('groups')">Групи</div>
+          <div class="profile-tab" onclick="switchTab('photos')">Фото</div>
+        </div>
+        
+        <div class="tab-content" id="tab-content">
+          <!-- Вміст вкладки "Друзі" -->
+          <div class="add-friend-section">
+            <div class="section-title">Пошук друзів</div>
+            <div class="search-bar">
+              <input type="text" class="search-input" placeholder="Введіть ім'я користувача...">
+              <button class="search-btn">Пошук</button>
+            </div>
+            <div class="search-results">
+              <div class="user-card">
+                <div class="user-card-avatar">
+                  <img src="friend1.jpg" alt="User">
+                </div>
+                <div class="user-card-info">
+                  <div class="user-card-name">
+                    Марія Л.
+                    <div class="verified-badge" title="Верифікований користувач">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="user-card-status">Дизайнер, Львів</div>
+                </div>
+                <button class="add-btn">Додати</button>
+              </div>
+              <div class="user-card">
+                <div class="user-card-avatar">
+                  <img src="friend2.jpg" alt="User">
+                </div>
+                <div class="user-card-info">
+                  <div class="user-card-name">Петро К.</div>
+                  <div class="user-card-status">Інженер, Харків</div>
+                </div>
+                <button class="add-btn">Додати</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="section-title">Мої друзі</div>
+          <div class="friends-grid">
+            <div class="friend-card">
+              <div class="friend-avatar">
+                <img src="friend3.jpg" alt="Friend">
+              </div>
+              <div class="friend-name">
+                Анна В.
+                <div class="verified-badge" title="Верифікований користувач">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="friend-status">Була онлайн 2 год тому</div>
+              <div class="friend-actions">
+                <button class="message-btn">Написати</button>
+                <button class="remove-btn">Видалити</button>
+              </div>
+            </div>
+            <div class="friend-card">
+              <div class="friend-avatar">
+                <img src="friend4.jpg" alt="Friend">
+              </div>
+              <div class="friend-name">Максим Т.</div>
+              <div class="friend-status">Онлайн</div>
+              <div class="friend-actions">
+                <button class="message-btn">Написати</button>
+                <button class="remove-btn">Видалити</button>
+              </div>
+            </div>
+            <div class="friend-card">
+              <div class="friend-avatar">
+                <img src="friend5.jpg" alt="Friend">
+              </div>
+              <div class="friend-name">Ірина С.</div>
+              <div class="friend-status">Була онлайн вчора</div>
+              <div class="friend-actions">
+                <button class="message-btn">Написати</button>
+                <button class="remove-btn">Видалити</button>
+              </div>
+            </div>
+            <div class="friend-card">
+              <div class="friend-avatar">
+                <img src="friend6.jpg" alt="Friend">
+              </div>
+              <div class="friend-name">
+                Віктор П.
+                <div class="verified-badge" title="Верифікований користувач">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="friend-status">Онлайн</div>
+              <div class="friend-actions">
+                <button class="message-btn">Написати</button>
+                <button class="remove-btn">Видалити</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Мобільне меню -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="close-btn" onclick="closeMenu()">✕</div>
+    <div class="mobile-logo">
+      <img src="logo.svg" alt="PULSAR">
+    </div>
+    <a href="#">Головна</a>
+    <a href="#" class="active">Профіль</a>
+    <a href="#">Повідомлення</a>
+    <a href="#">Друзі</a>
+    <a href="#">Групи</a>
+    <a href="#" class="telegram-mobile">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.4394 4.62375C22.2744 4.49375 22.0566 4.45874 21.8574 4.52999L2.35775 11.3272C1.95901 11.4892 1.70901 11.8912 1.75588 12.3149C1.80275 12.7387 2.12469 13.0729 2.54588 13.1527L6.72026 13.8999L8.37963 20.1674C8.44556 20.3927 8.59994 20.5855 8.80869 20.6967C9.01744 20.808 9.26394 20.829 9.48807 20.7555L13.3798 19.2712L16.8124 21.72C17.0224 21.8742 17.2806 21.9547 17.5391 21.9547C17.6599 21.9547 17.7809 21.9352 17.8979 21.8962C18.2631 21.784 18.5396 21.4842 18.6244 21.1115L22.6084 5.53574C22.6737 5.24174 22.6041 4.93574 22.4394 4.62375ZM17.0959 8.25824L9.72588 14.183C9.56213 14.3152 9.45344 14.4999 9.41588 14.7075L8.83588 17.6092L7.85151 13.8055L17.0959 8.25824Z" fill="white"/>
+      </svg>
+      Telegram
+    </a>
+  </div>
+  
+  <!-- Модальні вікна -->
+  <div class="modal" id="edit-profile-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Редагувати профіль</div>
+        <div class="modal-close" onclick="closeModal('edit-profile-modal')">✕</div>
+      </div>
+      <form>
+        <div class="form-group">
+          <label class="form-label">Ім'я</label>
+          <input type="text" class="form-input" value="Олександр К.">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Статус</label>
+          <input type="text" class="form-input" value="Активний зараз">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Про мене</label>
+          <textarea class="form-textarea">Розробник програмного забезпечення з Києва. Люблю подорожувати, читати та займатися спортом. Завжди готовий до нових викликів та знайомств.</textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="cancel-btn" onclick="closeModal('edit-profile-modal')">Скасувати</button>
+          <button type="submit" class="save-btn">Зберегти</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="modal" id="settings-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Налаштування</div>
+        <div class="modal-close" onclick="closeModal('settings-modal')">✕</div>
+      </div>
+      <form>
+        <div class="form-group">
+          <label class="form-label">Основний колір</label>
+          <div class="color-options">
+            <div class="color-option color-blue active"></div>
+            <div class="color-option color-red"></div>
+            <div class="color-option color-green"></div>
+            <div class="color-option color-purple"></div>
+            <div class="color-option color-orange"></div>
+            <div class="color-option color-pink"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Сповіщення</label>
+          <div class="checkbox-group">
+            <input type="checkbox" id="notify-messages" class="checkbox-input" checked>
+            <label for="notify-messages">Нові повідомлення</label>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="notify-friends" class="checkbox-input" checked>
+            <label for="notify-friends">Запити на дружбу</label>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="notify-groups" class="checkbox-input">
+            <label for="notify-groups">Активність в групах</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Конфіденційність</label>
+          <div class="checkbox-group">
+            <input type="checkbox" id="privacy-profile" class="checkbox-input" checked>
+            <label for="privacy-profile">Профіль видно всім</label>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="privacy-online" class="checkbox-input">
+            <label for="privacy-online">Приховати статус онлайн</label>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="cancel-btn" onclick="closeModal('settings-modal')">Скасувати</button>
+          <button type="submit" class="save-btn">Зберегти</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="modal" id="avatar-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Змінити фото</div>
+        <div class="modal-close" onclick="closeModal('avatar-modal')">✕</div>
+      </div>
+      <div class="avatar-upload">
+        <div class="avatar-preview">
+          <img src="avatar.jpg" alt="Avatar Preview">
+        </div>
+        <button type="button" class="upload-btn">Завантажити фото</button>
+        <input type="file" id="avatar-file" style="display: none;">
+      </div>
+      <div class="form-actions">
+        <button type="button" class="cancel-btn" onclick="closeModal('avatar-modal')">Скасувати</button>
+        <button type="submit" class="save-btn">Зберегти</button>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Функції для роботи з мобільним меню
+    function openMenu() {
+      document.getElementById('mobile-menu').classList.add('active');
+      document.getElementById('overlay').classList.add('active');
+      document.body.classList.add('menu-open');
+    }
+    
+    function closeMenu() {
+      document.getElementById('mobile-menu').classList.remove('active');
+      document.getElementById('overlay').classList.remove('active');
+      document.body.classList.remove('menu-open');
+    }
+    
+    // Функції для роботи з модальними вікнами
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+      document.body.classList.add('menu-open');
+    }
+    
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+      document.body.classList.remove('menu-open');
+    }
+    
+    // Перемикання вкладок
+    function switchTab(tab) {
+      const tabs = document.querySelectorAll('.profile-tab');
+      tabs.forEach(t => t.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      
+      // Можна додати логіку для відображення вмісту різних вкладок
+      if (tab === 'messages') {
+        document.getElementById('tab-content').innerHTML = renderChatUI();
+      } else if (tab === 'friends') {
+        // Поточний вміст вже відображає друзів
+      }
+    }
+    
+    // Рендер інтерфейсу чату для вкладки повідомлень
+    function renderChatUI() {
+      return `
+        <div class="chat-container">
+          <div class="chat-header">
+            <div class="chat-avatar">
+              <img src="friend3.jpg" alt="Chat User">
+            </div>
+            <div class="chat-user-info">
+              <div class="chat-user-name">
+                Анна В.
+                <div class="verified-badge" title="Верифікований користувач">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="chat-user-status">Була онлайн 2 год тому</div>
+            </div>
+            <div class="chat-actions">
+              <div class="chat-action" title="Аудіо дзвінок">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div class="chat-action" title="Відео дзвінок">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+              </div>
+              <div class="chat-action" title="Профіль">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="10" r="3"></circle>
+                  <path d="M7 20.662V19c0-1 .1-1.9 1-2h8c.9.1 1 1 1 2v1.662"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+          
+          <div class="chat-messages">
+            <div class="message message-incoming">
+              Привіт! Як справи?
+              <div class="message-time">10:30</div>
+            </div>
+            <div class="message message-outgoing">
+              Привіт! Все добре, дякую. Працюю над новим проектом. Як у тебе?
+              <div class="message-time">10:32</div>
+            </div>
+            <div class="message message-incoming">
+              У мене все чудово! Готуюся до відпустки наступного тижня.
+              <div class="message-time">10:33</div>
+            </div>
+            <div class="message message-incoming">
+              Куди збираєшся поїхати на вихідні?
+              <div class="message-time">10:34</div>
+            </div>
+            <div class="message message-outgoing">
+              Ще не вирішив. Можливо, поїду до озера або в гори. Залежить від погоди.
+              <div class="message-time">10:36</div>
+            </div>
+          </div>
+          
+          <div class="chat-input-area">
+            <input type="text" class="chat-input" placeholder="Введіть повідомлення...">
+            <button class="send-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+    
+    // Завантаження аватара
+    document.querySelector('.upload-btn').addEventListener('click', function() {
+      document.getElementById('avatar-file').click();
+    });
+    
+    document.getElementById('avatar-file').addEventListener('change', function(e) {
+      if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.querySelector('.avatar-preview img').src = e.target.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    });
+    
+    // Вибір кольору
+    const colorOptions = document.querySelectorAll('.color-option');
+    colorOptions.forEach(option => {
+      option.addEventListener('click', function() {
+        colorOptions.forEach(o => o.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
