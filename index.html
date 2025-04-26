@@ -68,12 +68,12 @@
       color: #333;
       text-decoration: none;
       font-size: 16px;
-      padding: 6px 12px;  /* Зменшено відступи */
-      border-radius: 6px;  /* Зменшено заокруглення для більш квадратного вигляду */
+      padding: 6px 12px;
+      border-radius: 6px;
       transition: all 0.2s;
       background-color: transparent;
-      display: inline-block;  /* Для кращого обтікання тексту */
-      line-height: 1.2;  /* Для кращої висоти контейнера */
+      display: inline-block;
+      line-height: 1.2;
     }
     
     nav a:hover {
@@ -147,8 +147,8 @@
       text-decoration: none;
       font-size: 18px;
       display: block;
-      padding: 10px 14px;  /* Зменшено відступи */
-      border-radius: 6px;  /* Зменшено заокруглення для більш квадратного вигляду */
+      padding: 10px 14px;
+      border-radius: 6px;
       transition: all 0.2s;
       margin-bottom: 8px;
     }
@@ -201,15 +201,91 @@
       margin-bottom: 30px;
     }
     
-    .hero-image-placeholder {
+    .hero-image {
       width: 40%;
-      height: 300px;
-      background-color: #eee;
-      border-radius: 10px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 100, 0.1);
+    }
+    
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .features {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .feature {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(to right, #0062e6, #33aeff);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #999;
+      color: white;
+      font-size: 20px;
+    }
+    
+    .feature-text {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    .cta-button {
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+    }
+    
+    .cta-primary {
+      background: linear-gradient(to right, #0062e6, #33aeff);
+      color: white;
+      border: none;
+      box-shadow: 0 4px 15px rgba(0, 98, 230, 0.3);
+    }
+    
+    .cta-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(0, 98, 230, 0.4);
+    }
+    
+    .cta-secondary {
+      background-color: white;
+      color: #0062e6;
+      border: 2px solid #0062e6;
+    }
+    
+    .cta-secondary:hover {
+      background-color: #f5f9ff;
     }
     
     @keyframes slideDown {
@@ -258,9 +334,16 @@
         font-size: 16px;
       }
       
-      .hero-image-placeholder {
+      .hero-image {
         width: 100%;
-        height: 200px;
+      }
+      
+      .features {
+        flex-direction: column;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
       }
     }
   </style>
@@ -294,9 +377,33 @@
       <div class="hero-content">
         <h1 class="welcome-text">ЛАСКАВО ПРОСИМО</h1>
         <p class="welcome-subtext">Давно хотів з кимось поспілкуватись чи пограти в різні ігри? Тоді ти попав саме туди!</p>
+        
+        <p class="welcome-subtext">PULSAR - це місце, де збираються люди для спілкування, знайомства та гри. Наша платформа об'єднує однодумців і дарує нові враження. Знаходь друзів, збирай команди та насолоджуйся часом разом!</p>
+        
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon">💬</div>
+            <div class="feature-text">Зручний чат</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🎮</div>
+            <div class="feature-text">Різноманітні ігри</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">👥</div>
+            <div class="feature-text">Жива спільнота</div>
+          </div>
+        </div>
+        
+        <div class="cta-buttons">
+          <a href="#" class="cta-button cta-primary">Зареєструватися</a>
+          <a href="#" class="cta-button cta-secondary">Увійти</a>
+        </div>
       </div>
-      <div class="hero-image-placeholder">
-        [Місце для фото/графіки]
+      
+      <div class="hero-image">
+        <img src="https://i.imgur.com/placeholder-url.jpg" alt="Спілкування в PULSAR" 
+             onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'><rect width=\'600\' height=\'400\' fill=\'%23eeeeff\'/><path d=\'M300,100 C350,100 400,150 400,200 C400,250 350,300 300,300 C250,300 200,250 200,200 C200,150 250,100 300,100 Z\' fill=\'%230062e6\' opacity=\'0.7\'/><path d=\'M350,150 C375,150 400,175 400,200 C400,225 375,250 350,250 C325,250 300,225 300,200 C300,175 325,150 350,150 Z\' fill=\'%2333aeff\' opacity=\'0.9\'/><path d=\'M250,150 C275,150 300,175 300,200 C300,225 275,250 250,250 C225,250 200,225 200,200 C200,175 225,150 250,150 Z\' fill=\'%2333aeff\' opacity=\'0.6\'/><text x=\'300\' y=\'375\' font-size=\'20\' text-anchor=\'middle\' fill=\'%23666\'>PULSAR - Об\'єднуємо людей</text></svg>';" />
       </div>
     </section>
   </div>
